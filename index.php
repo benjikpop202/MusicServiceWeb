@@ -1,6 +1,7 @@
 <?php
+define('SERVERPATH', $_SERVER['DOCUMENT_ROOT']);
 // Incluye el archivo principal de Smarty. Ajusta la ruta según sea necesario.
-require_once('C:\xampp\htdocs\MusicService\libs\Smarty.class.php');
+require_once(SERVERPATH.'\libs\Smarty.class.php');
 
 // Configuración de la base de datos
 
