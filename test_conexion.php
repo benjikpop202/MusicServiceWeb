@@ -1,25 +1,17 @@
 <?php
-// Define la ruta a la raíz del proyecto
-define('SERVERPATH', $_SERVER['DOCUMENT_ROOT']);
+require_once('../configs/conexion.php');
+require_once('../model/Model.php'); // Asegúrarse de que la ruta sea correcta
 
-// Incluye el archivo de conexión
-require_once(SERVERPATH . '/musicservice/configs/conexion.php'); // Ajusta la ruta según sea necesario
+$model = new Model();
 
 try {
-    // Obtén la instancia de la conexión
-    $conexion = Conexion::obtenerInstancia()->obtenerConexion();
-
-    // Verifica si la conexión es exitosa
-    if ($conexion) {
-        echo "Conexión exitosa";
-    } else {
-        echo "Error al conectar";
-    }
+    $db = $model->getDb();
+    echo "Conexión exitosa a la base de datos.";
 } catch (Exception $e) {
-    // Muestra un mensaje de error si la conexión falla
-    echo "Error: " . $e->getMessage();
+    echo "Error al conectar a la base de datos: " . $e->getMessage();
 }
 ?>
+
 
 
 
