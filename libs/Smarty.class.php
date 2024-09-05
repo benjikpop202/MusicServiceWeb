@@ -16,7 +16,7 @@
 define('__SMARTY_DIR', __DIR__ . '/../src/');
 
 // Global function declarations
-require_once(__SMARTY_DIR . "/functions.php");
+require_once(__SMARTY_DIR . '/functions.php');
 
 spl_autoload_register(function ($class) {
 	// Class prefix
