@@ -1,5 +1,5 @@
 <?php
-require_once('../configs/conexion.php'); // Ruta actualizada
+require_once('./configs/Conexion.php'); // Ruta actualizada
 
 class Model {
 

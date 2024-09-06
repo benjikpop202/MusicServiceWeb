@@ -1,6 +1,6 @@
 <?php
-require_once('../configs/conexion.php');
-require_once('../model/Model.php'); // Asegúrarse de que la ruta sea correcta
+require_once('./configs/Conexion.php');
+require_once('./Model/model.php'); // Asegúrarse de que la ruta sea correcta
 
 $model = new Model();
 
