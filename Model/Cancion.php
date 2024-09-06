@@ -1,7 +1,7 @@
 <?php
 
 
-class Usuario {
+class Canciones {
     private $db;
     private $table = "Canciones";
 
