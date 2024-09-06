@@ -1,6 +1,5 @@
 <?php
 
-
 class Usuario {
     private $db;
     private $table = "Usuarios";
