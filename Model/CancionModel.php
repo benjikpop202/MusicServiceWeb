@@ -1,6 +1,5 @@
 <?php
 
-
 class Canciones {
     private $db;
     private $table = "Canciones";
