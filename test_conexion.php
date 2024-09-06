@@ -1,6 +1,6 @@
 <?php
-require_once('../configs/conexion.php');
-require_once('../model/Model.php'); // Asegúrarse de que la ruta sea correcta
+require_once('C:\xampp\htdocs\MusicServiceWeb\configs');
+require_once('C:\xampp\htdocs\MusicServiceWeb\Model'); // Asegúrarse de que la ruta sea correcta
 
 $model = new Model();
 

@@ -1,5 +1,5 @@
 <?php
-require_once('../configs/conexion.php'); // Ruta actualizada
+require_once('C:\xampp\htdocs\MusicServiceWeb\configs'); // Ruta actualizada
 
 class Model {
 
