@@ -1,6 +1,6 @@
 <?php
-require_once('C:\xampp\htdocs\MusicServiceWeb\configs');
-require_once('C:\xampp\htdocs\MusicServiceWeb\Model'); // Asegúrarse de que la ruta sea correcta
+require_once('./configs/Conexion.php');
+require_once('./Model/model.php'); // Asegúrarse de que la ruta sea correcta
 
 $model = new Model();
 
@@ -11,6 +11,7 @@ try {
     echo "Error al conectar a la base de datos: " . $e->getMessage();
 }
 ?>
+
 
 
 
