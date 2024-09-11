@@ -11,7 +11,7 @@ require_once('./model/UserModel.php');
 echo json_encode(["message" => "Modelo UserModel.php incluido."]);
 
 // Incluir el controlador
-require_once('./controllers/UsuarioController.php');
+require_once('./controllers/UserController.php');
 
 // Mensaje de depuración después de incluir el controlador
 echo json_encode(["message" => "Controlador UsuarioController.php incluido."]);
