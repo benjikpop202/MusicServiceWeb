@@ -1,8 +1,8 @@
 <?php
 require_once('./configs/Conexion.php');
-require_once('./Model/model.php'); // Asegúrarse de que la ruta sea correcta
+require_once('./Model/DatabaseModel.php'); // Asegúrarse de que la ruta sea correcta
 
-$model = new Model();
+$model = new Database();
 
 try {
     $db = $model->getDb();

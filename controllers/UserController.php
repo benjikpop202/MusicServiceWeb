@@ -1,5 +1,6 @@
 <?php
-include_once('../Model/UserModel.php');
+include_once(__DIR__ . '/../Model/UserModel.php');
+
 
 class UsuarioController {
     private $db;
@@ -13,18 +14,25 @@ class UsuarioController {
     // Método para registrar un nuevo usuario
     public function registrarse() {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $this->usuario->name = $_POST['name'];
-            $this->usuario->gmail = $_POST['gmail'];
-            $this->usuario->password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-            $this->usuario->status = $_POST['status'];
-
-            if ($this->usuario->crearUsuario()) {
-                echo "Usuario registrado con éxito.";
+            // Verificar que los campos existan en el POST antes de asignarlos
+            $this->usuario->name = isset($_POST['name']) ? $_POST['name'] : '';
+            $this->usuario->gmail = isset($_POST['gmail']) ? $_POST['gmail'] : '';
+            $this->usuario->password = isset($_POST['password']) ? password_hash($_POST['password'], PASSWORD_BCRYPT) : '';
+            $this->usuario->status = isset($_POST['status']) ? $_POST['status'] : '';
+    
+            // Verifica que todos los campos requeridos tengan valores
+            if (!empty($this->usuario->name) && !empty($this->usuario->gmail) && !empty($this->usuario->password) && !empty($this->usuario->status)) {
+                if ($this->usuario->crearUsuario()) {
+                    echo "Usuario registrado con éxito.";
+                } else {
+                    echo "Error al registrar el usuario.";
+                }
             } else {
-                echo "Error al registrar el usuario.";
+                echo "Por favor, rellena todos los campos obligatorios.";
             }
         }
     }
+    
 
     // Método para obtener todos los usuarios
     public function obtenerUsuarios() {

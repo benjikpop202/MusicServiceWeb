@@ -1,7 +1,7 @@
 <?php
 require_once('./configs/Conexion.php'); // Ruta actualizada
 
-class Model {
+class Database {
 
     private $db = null;
 

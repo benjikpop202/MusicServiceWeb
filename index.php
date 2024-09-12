@@ -2,7 +2,7 @@
 //define('SERVERPATH', $_SERVER['DOCUMENT_ROOT']);
 // Incluye el archivo principal de Smarty. Ajusta la ruta según sea necesario.
 //require_once(SERVERPATH.'\libs\Smarty.class.php');
-require_once('libs\Smarty.class.php');
+/*require_once('libs\Smarty.class.php');
 // Configuración de la base de datos
 
 $smarty = new Smarty\Smarty;
@@ -20,6 +20,39 @@ $mensaje = "Hola, Smarty!";
 $smarty->assign('variable', $mensaje);
 
 // Muestra la plantilla
-$smarty->display('templates.tpl');
+$smarty->display('templates.tpl');*/
+
+include_once './Model/DatabaseModel.php';
+include_once './controllers/UserController.php';
+
+// Crear conexión a la base de datos
+$database = new Database();
+$db = $database->getDb();
+
+
+
+// Instanciar el controlador de usuarios
+$usuarioController = new UsuarioController($db);
+
+// Gestionar las rutas simples
+$action = isset($_GET['action']) ? $_GET['action'] : '';
+
+switch ($action) {
+    case 'registrarse':
+        $usuarioController->registrarse();
+        break;
+    case 'obtenerUsuarios':
+        $usuarioController->obtenerUsuarios();
+        break;
+    case 'eliminarUsuario':
+        $id = isset($_GET['id']) ? $_GET['id'] : die("Falta el ID");
+        $usuarioController->eliminarUsuario($id);
+        break;
+    case 'actualizarUsuario':
+        $usuarioController->actualizarUsuario();
+        break;
+    default:
+        echo "Acción no reconocida.";
+}
 
 ?>
