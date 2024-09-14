@@ -24,6 +24,10 @@ $smarty->display('templates.tpl');*/
 
 include_once './Model/DatabaseModel.php';
 include_once './controllers/UserController.php';
+require 'vendor/autoload.php';
+//cargar las variables de entorno
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 // Crear conexión a la base de datos
 $database = new Database();
