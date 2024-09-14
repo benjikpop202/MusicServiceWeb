@@ -2,7 +2,7 @@
 //define('SERVERPATH', $_SERVER['DOCUMENT_ROOT']);
 // Incluye el archivo principal de Smarty. Ajusta la ruta según sea necesario.
 //require_once(SERVERPATH.'\libs\Smarty.class.php');
-/*require_once('libs\Smarty.class.php');
+require_once('libs\Smarty.class.php');
 // Configuración de la base de datos
 
 $smarty = new Smarty\Smarty;
@@ -20,14 +20,11 @@ $mensaje = "Hola, Smarty!";
 $smarty->assign('variable', $mensaje);
 
 // Muestra la plantilla
-$smarty->display('templates.tpl');*/
+$smarty->display('registrarse.tpl');
 
 include_once './Model/DatabaseModel.php';
 include_once './controllers/UserController.php';
-require 'vendor/autoload.php';
-//cargar las variables de entorno
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+
 
 // Crear conexión a la base de datos
 $database = new Database();
@@ -56,7 +53,7 @@ switch ($action) {
         $usuarioController->actualizarUsuario();
         break;
     default:
-        echo "Acción no reconocida.";
+       // echo "Acción no reconocida.";
 }
 
 ?>
