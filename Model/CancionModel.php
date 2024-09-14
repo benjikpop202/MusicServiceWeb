@@ -22,7 +22,7 @@ class Canciones {
         $stmt = $this->db->prepare($query);
 
         // Limpiar los datos
-        $this->nombre = htmlspecialchars(strip_tags($this->nomre));
+        $this->nombre = htmlspecialchars(strip_tags($this->nombre));
         $this->artista = htmlspecialchars(strip_tags($this->artista));
         $this->genero = htmlspecialchars(strip_tags($this->genero));
         
