@@ -74,23 +74,20 @@ class Usuario {
     // Actualizar un usuario
     public function actualizarUsuario() {
         $query = "UPDATE " . $this->table . " 
-                  SET name = :name, gmail = :gmail, password = :password, status = :status
+                  SET password = :password
                   WHERE id = :id";
 
         $stmt = $this->db->prepare($query);
 
-        $this->name = htmlspecialchars(strip_tags($this->name));
-        $this->gmail = htmlspecialchars(strip_tags($this->gmail));
+        // Limpiar los datos
         $this->password = htmlspecialchars(strip_tags($this->password));
-        $this->status = htmlspecialchars(strip_tags($this->status));
         $this->id = htmlspecialchars(strip_tags($this->id));
 
-        $stmt->bindParam(':name', $this->name);
-        $stmt->bindParam(':gmail', $this->gmail);
+        // Enlazar los parámetros
         $stmt->bindParam(':password', $this->password);
-        $stmt->bindParam(':status', $this->status);
         $stmt->bindParam(':id', $this->id);
 
+        // Ejecutar la consulta
         if ($stmt->execute()) {
             return true;
         }
