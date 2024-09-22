@@ -1,7 +1,6 @@
 <?php
 include_once(__DIR__ . '/../Model/UserModel.php');
 
-
 class UsuarioController {
     private $db;
     private $usuario;
@@ -32,7 +31,6 @@ class UsuarioController {
             }
         }
     }
-    
 
     // Método para obtener todos los usuarios
     public function obtenerUsuarios() {
@@ -53,27 +51,26 @@ class UsuarioController {
         }
     }
 
-    // Método para actualizar un usuario
+    // Método para actualizar solo la contraseña del usuario
     public function actualizarUsuario() {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Asegurarse de que el ID del usuario esté presente
-            if (isset($_POST['id'])) {
+            if (isset($_POST['id']) && !empty($_POST['id'])) {
                 $this->usuario->id = $_POST['id'];
-                $this->usuario->name = $_POST['name'];
-                $this->usuario->gmail = $_POST['gmail'];
-                
-                // Actualizar la contraseña si se ha proporcionado una nueva
-                if (!empty($_POST['password'])) {
-                    $this->usuario->password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-                }
-                
-                $this->usuario->status = $_POST['status'];
 
-                // Llamar al método actualizar del modelo
-                if ($this->usuario->actualizarUsuario()) {
-                    echo "Usuario actualizado con éxito.";
+                // Verificar si se ha proporcionado una nueva contraseña
+                if (!empty($_POST['password'])) {
+                    // Encriptar la nueva contraseña
+                    $this->usuario->password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+                    
+                    // Llamar al método del modelo que solo actualiza la contraseña
+                    if ($this->usuario->actualizarUsuario()) {
+                        echo "Contraseña actualizada con éxito.";
+                    } else {
+                        echo "Error al actualizar la contraseña.";
+                    }
                 } else {
-                    echo "Error al actualizar el usuario.";
+                    echo "No se proporcionó una nueva contraseña.";
                 }
             } else {
                 echo "Falta el ID del usuario.";
@@ -81,3 +78,5 @@ class UsuarioController {
         }
     }
 }
+?>
+
