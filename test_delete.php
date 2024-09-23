@@ -8,7 +8,7 @@ try {
     $db = $database->getDb();
 
     // Definir el ID del usuario que deseas eliminar
-    $userId = 1; // Cambia esto al ID del usuario que deseas eliminar
+    $userId = 3; // Cambia esto al ID del usuario que deseas eliminar
 
     // Preparar la consulta para eliminar el usuario
     $stmt = $db->prepare("DELETE FROM usuarios WHERE id = :id");

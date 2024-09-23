@@ -16,11 +16,21 @@ $smarty->setConfigDir(__DIR__ . '/configs');
 
 // Prueba la instalación de Smarty para asegurarte de que todo esté configurado correctamente
 //$smarty->testInstall();
-$mensaje = "Hola, Smarty!";
-$smarty->assign('variable', $mensaje);
+$request = $_SERVER['REQUEST_URI'];
 
-// Muestra la plantilla
-$smarty->display('registrarse.tpl');
+switch ($request){
+    case '/login':
+        $smarty->display('templates/sesion.tpl');
+        break;
+    case '/register':
+        $smarty->display('templates/registrarse.tpl');
+        break;
+    default:
+        http_response_code(404);
+        $smarty->display('templates/404.tpl');
+        break;
+}
+
 
 include_once './Model/DatabaseModel.php';
 include_once './controllers/UserController.php';
