@@ -98,7 +98,7 @@
 <body>
     <aside>
         <p>¿No tienes una cuenta?</p>
-        <button>Registrarse</button>
+        <button onclick="window.location.href='/register'">Registrarse</button>
     </aside>
     <section>
         <div class="Title"><h1>Music Service</h1> <span class="material-symbols-outlined">

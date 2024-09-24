@@ -95,7 +95,7 @@
 <body>
     <aside>
         <p>¿Ya tienes una cuenta?</p>
-        <button onclick="window.location.href='login.php'">Iniciar Sesión</button>
+        <button onclick="window.location.href='/login'">Iniciar Sesión</button>
     </aside>
     <section>
         <div class="Title">
