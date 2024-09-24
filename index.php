@@ -19,6 +19,9 @@ $smarty->setConfigDir(__DIR__ . '/configs');
 $request = $_SERVER['REQUEST_URI'];
 
 switch ($request){
+    case '/home':
+       $smarty->display('templates/principal.tpl');
+        break;
     case '/login':
         $smarty->display('templates/sesion.tpl');
         break;
