@@ -1,7 +1,7 @@
 <?php
 require_once('./configs/Conexion.php'); // Asegúrate de que la conexión esté bien
 require_once('./model/DatabaseModel.php'); // Incluye la clase Database
-
+require_once('./controllers/UserController.php'); // Incluye el controlador de usuario
 try {
     // Crear una instancia de la clase Database
     $database = new Database();
