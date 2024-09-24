@@ -5,7 +5,7 @@ header("Content-Type: application/json; charset=UTF-8");
 echo json_encode(["message" => "Archivo test_usuario.php cargado."]);
 
 // Incluir el modelo
-require_once('./model/UserModel.php');
+require_once('./Model/DatabaseModel.php');
 
 // Mensaje de depuración después de incluir el modelo
 echo json_encode(["message" => "Modelo UserModel.php incluido."]);
@@ -17,7 +17,7 @@ require_once('./controllers/UserController.php');
 echo json_encode(["message" => "Controlador UsuarioController.php incluido."]);
 
 // Instanciar el modelo y el controlador
-$database = new Model();
+$database = new Database();
 $db = $database->getDb();
 $controller = new UsuarioController($db);
 
