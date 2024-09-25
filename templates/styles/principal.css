@@ -1,0 +1,88 @@
+body {
+    display: flex;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    margin: 0;
+    background: #f4f4f4;
+    background-size: cover;
+}
+aside{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-arround;
+}
+section{
+    position: relative;
+    width: 70%;
+}
+.User{
+    position: absolute;
+    left: 65%;
+    top: 5%;
+    display: flex;
+    width: 200px;
+    justify-content: space-between;
+    align-items: center;
+}
+.User span{
+  font-size: 3rem;
+  border: 3px solid blueviolet;
+  padding: 5px 5px;
+  border-radius: 100%;
+  color: blueviolet;
+}
+.Title{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10%;
+}
+.Title h1 {
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    font-weight: bolder;
+    text-align: center;
+    background: linear-gradient(90deg, indigo, blueviolet, violet, pink);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;  
+}
+
+ul{
+    display: flex;
+    width: 80%;
+    height: 500px;
+    flex-direction: column;
+}
+ul button{
+    margin: 30px;
+    padding: 25px;
+    background: #f1438d;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: width 0.3s;
+    width: 70%;
+}
+ul button:hover{
+   width: 90%;
+}
+
+.listas-container{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 60%;
+    height: 70%;
+    top: 20%;
+    left: 5%;
+}
+
+.listas-container h1{
+    height: 50px;
+    text-align: center;
+}

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2024-09-24 01:47:07
+/* Smarty version 5.4.0, created on 2024-09-25 21:38:37
   from 'file:templates/registrarse.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_66f1fdfbb7ea50_75115678',
+  'unifunc' => 'content_66f466bd415314_18651517',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3815a4f8f914b5ff09d78cddd666deffe77ceb9e' => 
     array (
       0 => 'templates/registrarse.tpl',
-      1 => 1727135188,
+      1 => 1727293088,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_66f1fdfbb7ea50_75115678 (\Smarty\Template $_smarty_tpl) {
+function content_66f466bd415314_18651517 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicService\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -31,90 +31,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicService\\templates';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <style>
-        .material-symbols-outlined {
-            font-size: 3.5rem;
-        }
-            
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background: #f4f4f4;
-            background-size: cover;
-        }
-        aside {
-            width: 30%;
-        }
-        aside p {
-            color: gray;
-            font-size: 1.5rem;
-        }
-        aside button {
-            padding: 10px;
-            border: none;
-            background-color: blueviolet;
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        section {
-            display: flex;
-            width: 60%;
-            flex-direction: column;
-        }
-        .Title {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10%;
-        }
-        .login-container {
-            margin-left: 5%;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            width: 300px;
-        }
-       .Title h1 {
-            font-family: "Poppins", sans-serif;
-            font-style: normal;
-            margin-bottom: 20px;
-            font-size: 3.5rem;
-            font-weight: bolder;
-            text-align: center;
-            background: linear-gradient(90deg, indigo, blueviolet, violet, pink);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;  
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-        .form-group button {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            background-color: blueviolet;
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .form-group button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <link rel="stylesheet" href="templates/styles/register.css"/>
 </head>
 <body>
     <aside>
