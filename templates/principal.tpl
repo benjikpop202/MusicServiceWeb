@@ -10,13 +10,22 @@
     <link rel="stylesheet" href="templates/styles/principal.css" />
 </head>
 <body>
+    <div id="overlay">
+        <form id="list-form">
+            <label for="list-name">Ingrese nombre de la Lista</label>
+            <input type="text" id="list-name" required>
+            
+            <button id="submit" type="submit">Agregar</button>
+            <button id="cancelar">Cancelar</button>
+        </form>
+    </div>
     <aside>
         <div class="Title"><h1>Music Service</h1> <span class="material-symbols-outlined">
             music_note
             </span>
         </div>
         <ul>
-         <button>+ Nueva lista</button>
+         <button id="NewLista">+ Nueva lista</button>
          <button>Plataforma</button>
          <button>Cuenta</button>
         </ul>
@@ -27,7 +36,7 @@
             </span>
             <h1>User Name</h1>
         </div>
-        <div class="listas-container">
+        <div id="list-content" class="listas-container">
           <h1>Listas</h1>
         </div>
     </section>

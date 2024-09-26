@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2024-09-25 22:04:17
+/* Smarty version 5.4.0, created on 2024-09-26 20:47:21
   from 'file:templates/principal.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_66f46cc19e4251_62891255',
+  'unifunc' => 'content_66f5ac39462606_63113551',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b63eadfa68ca264010437026877bc8a5f8495e5e' => 
     array (
       0 => 'templates/principal.tpl',
-      1 => 1727294653,
+      1 => 1727376438,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_66f46cc19e4251_62891255 (\Smarty\Template $_smarty_tpl) {
+function content_66f5ac39462606_63113551 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicService\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -34,13 +34,22 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicService\\templates';
     <link rel="stylesheet" href="templates/styles/principal.css" />
 </head>
 <body>
+    <div id="overlay">
+        <form id="list-form">
+            <label for="list-name">Ingrese nombre de la Lista</label>
+            <input type="text" id="list-name" required>
+            
+            <button id="submit" type="submit">Agregar</button>
+            <button id="cancelar">Cancelar</button>
+        </form>
+    </div>
     <aside>
         <div class="Title"><h1>Music Service</h1> <span class="material-symbols-outlined">
             music_note
             </span>
         </div>
         <ul>
-         <button>+ Nueva lista</button>
+         <button id="NewLista">+ Nueva lista</button>
          <button>Plataforma</button>
          <button>Cuenta</button>
         </ul>
@@ -51,7 +60,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicService\\templates';
             </span>
             <h1>User Name</h1>
         </div>
-        <div class="listas-container">
+        <div id="list-content" class="listas-container">
           <h1>Listas</h1>
         </div>
     </section>
