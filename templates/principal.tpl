@@ -16,7 +16,7 @@
             <input type="text" id="list-name" required>
             
             <button id="submit" type="submit">Agregar</button>
-            <button id="cancelar">Cancelar</button>
+            <button type="button" id="cancelar">Cancelar</button>
         </form>
     </div>
     <aside>
@@ -38,6 +38,10 @@
         </div>
         <div id="list-content" class="listas-container">
           <h1>Listas</h1>
+        </div>
+        <div id="btn-section">
+            <button id="anterior"> < Anterior </button>
+            <button id="siguiente"> Siguiente > </button>
         </div>
     </section>
     <script src="templates/scripts/paginacion.js" type="text/javascript"></script>

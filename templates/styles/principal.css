@@ -26,14 +26,17 @@ section{
     width: 200px;
     justify-content: space-between;
     align-items: center;
+    background: linear-gradient(45deg, #2340df, #92a0f0);
+    padding: 5px 50px;
+    border-radius: 30px;
+    color: #f4f4f4;
 }
 .User span{
   font-size: 3rem;
-  border: 3px solid blueviolet;
   padding: 5px 5px;
   border-radius: 100%;
   color: #f4f4f4;
-  background: blueviolet;
+  background: #333;
 }
 .Title{
     display: flex;
@@ -171,4 +174,29 @@ ul button:hover{
     justify-content: center;
     align-items: center;
     z-index: 1;
+}
+
+#btn-section{
+    width: 30%;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    top: 80%;
+    left: 20%;
+}
+
+#btn-section button{
+    display: none;
+    font-size: 1.3rem;
+    font-weight: lighter;
+    background: #f4f4f4;
+    padding: 5px 10px;
+    border: none;
+    color: gray;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#btn-section button:hover{
+    color: #333;
 }

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2024-09-26 20:47:21
+/* Smarty version 5.4.0, created on 2024-09-27 16:07:41
   from 'file:templates/principal.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_66f5ac39462606_63113551',
+  'unifunc' => 'content_66f6bc2d73cbc4_71916587',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b63eadfa68ca264010437026877bc8a5f8495e5e' => 
     array (
       0 => 'templates/principal.tpl',
-      1 => 1727376438,
+      1 => 1727444817,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_66f5ac39462606_63113551 (\Smarty\Template $_smarty_tpl) {
+function content_66f6bc2d73cbc4_71916587 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicService\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -40,7 +40,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicService\\templates';
             <input type="text" id="list-name" required>
             
             <button id="submit" type="submit">Agregar</button>
-            <button id="cancelar">Cancelar</button>
+            <button type="button" id="cancelar">Cancelar</button>
         </form>
     </div>
     <aside>
@@ -62,6 +62,10 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicService\\templates';
         </div>
         <div id="list-content" class="listas-container">
           <h1>Listas</h1>
+        </div>
+        <div id="btn-section">
+            <button id="anterior"> < Anterior </button>
+            <button id="siguiente"> Siguiente > </button>
         </div>
     </section>
     <?php echo '<script'; ?>
