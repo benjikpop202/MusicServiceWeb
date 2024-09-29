@@ -44,7 +44,7 @@ class Listas {
     }
 
     public function obtenerListaPorId() {
-        $query = "SELECT * FROM " . $this->table . " WHERE id = :id LIMIT 0,1";
+        $query = "SELECT * FROM " . $this->table . " WHERE id = :id LIMIT 1";
 
         $stmt = $this->db->prepare($query);
 
@@ -69,14 +69,16 @@ class Listas {
         $stmt = $this->db->prepare($query);
 
         $this->nombre = htmlspecialchars(strip_tags($this->nombre));
-        $this->es_publica = htmlspecialchars(strip_tags($this->es_publica));
+        $this->es_publica = (bool)$this->es_publica;
         $this->usuario_id = htmlspecialchars(strip_tags($this->usuario_id));
         $this->id = htmlspecialchars(strip_tags($this->id));
-
-        $stmt->bindParam(':name', $this->nombre);
-        $stmt->bindParam(':gmail', $this->es_publica);
-        $stmt->bindParam(':password', $this->usuario_id);
+        
+         // Enlazar parámetros
+        $stmt->bindParam(':nombre', $this->nombre);
+        $stmt->bindParam(':es_publica', $this->es_publica, PDO::PARAM_BOOL);
+        $stmt->bindParam(':usuario_id', $this->usuario_id); 
         $stmt->bindParam(':id', $this->id);
+
 
         if ($stmt->execute()) {
             return true;

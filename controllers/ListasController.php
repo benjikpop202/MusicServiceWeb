@@ -58,7 +58,7 @@ class ListaController {
             if (isset($_POST['id']) && !empty($_POST['id'])) {
                 $this->lista->id = $_POST['id'];
                 $this->lista->nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
-                $this->lista->es_publica = isset($_POST['es_publica']) ? $_POST['es_publica'] : '';
+                $this->lista->es_publica = isset($_POST['es_publica']) ? (bool)$_POST['es_publica'] : false;
                 $this->lista->usuario_id = isset($_POST['usuario_id']) ? $_POST['usuario_id'] : '';
 
                 if ($this->lista->actualizarLista()) {
