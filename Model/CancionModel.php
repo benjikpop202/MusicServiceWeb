@@ -51,30 +51,27 @@ class Canciones {
         return $stmt;
     }
 
-    // Obtener una cancion por ID
+    // obtener canciones por ID
+
     public function obtenerCancionesPorId() {
-        $query = "SELECT * FROM " . $this->table . " WHERE id = :id LIMIT 0,1";
-
+        $query = "SELECT * FROM canciones WHERE id = :id LIMIT 1"; // Solo necesitas un registro
         $stmt = $this->db->prepare($query);
-
         $stmt->bindParam(':id', $this->id);
-
         $stmt->execute();
-
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($row) {
+    
+        // Asignar valores a las propiedades del objeto Cancion
+        if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $this->nombre = $row['nombre'];
-            $this->genero = $row['genero'];
             $this->artista = $row['artista'];
-            
+            $this->genero = $row['genero'];
         }
     }
+    
 
     // Actualizar una cancion
     public function actualizarCanciones() {
         $query = "UPDATE " . $this->table . " 
-                  SET nombre = :nombre, artista = :artista, genero = :genero, 
+                  SET nombre = :nombre, artista = :artista, genero = :genero 
                   WHERE id = :id";
 
         $stmt = $this->db->prepare($query);
