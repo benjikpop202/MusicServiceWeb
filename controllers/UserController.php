@@ -1,6 +1,7 @@
 <?php
 include_once(__DIR__ . '/../Model/UserModel.php');
 
+
 class UsuarioController {
     private $db;
     private $usuario;

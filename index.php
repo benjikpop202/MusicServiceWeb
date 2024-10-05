@@ -7,7 +7,6 @@ require_once('libs\Smarty.class.php');
 
 $smarty = new Smarty\Smarty;
 
-
 // Configura los directorios de Smarty. Usa __DIR__ para obtener la ruta absoluta
 $smarty->setTemplateDir(__DIR__ . '/templates');
 $smarty->setCompileDir(__DIR__ . '/templates_c');
@@ -33,15 +32,12 @@ switch ($request){
         break;
 }
 
-
 include_once './Model/DatabaseModel.php';
 include_once './controllers/UserController.php';
-
 
 // Crear conexión a la base de datos
 $database = new Database();
 $db = $database->getDb();
-
 
 
 // Instanciar el controlador de usuarios
@@ -69,3 +65,12 @@ switch ($action) {
 }
 
 ?>
+
+
+
+
+
+
+
+
+
