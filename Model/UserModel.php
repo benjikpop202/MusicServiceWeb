@@ -35,7 +35,11 @@ class Usuario {
 
         // Ejecutar la consulta
         if ($stmt->execute()) {
-            return true;
+            $userId = $this->db->lastInsertId();
+
+            // Redirige a la página principal del usuario
+            header("Location: /home/$userId");
+            exit();
         }
 
         return false;

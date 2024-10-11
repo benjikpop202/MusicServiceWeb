@@ -37,8 +37,7 @@ switch ($action) {
         $usuarioController->actualizarUsuario();
         break;
 
-    default:
-        echo "Acción no reconocida.";
+    
 }
 ?>
 

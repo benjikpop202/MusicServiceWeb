@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2024-09-27 16:07:41
+/* Smarty version 5.4.0, created on 2024-10-11 21:19:02
   from 'file:templates/principal.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_66f6bc2d73cbc4_71916587',
+  'unifunc' => 'content_67097a260d74b8_81404742',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b63eadfa68ca264010437026877bc8a5f8495e5e' => 
     array (
       0 => 'templates/principal.tpl',
-      1 => 1727444817,
+      1 => 1728674238,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_66f6bc2d73cbc4_71916587 (\Smarty\Template $_smarty_tpl) {
+function content_67097a260d74b8_81404742 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicService\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -31,7 +31,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicService\\templates';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="templates/styles/principal.css" />
+    <link rel="stylesheet" href="/templates/styles/register.css"/>
 </head>
 <body>
     <div id="overlay">
@@ -69,7 +69,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicService\\templates';
         </div>
     </section>
     <?php echo '<script'; ?>
- src="templates/scripts/paginacion.js" type="text/javascript"><?php echo '</script'; ?>
+ src="/templates/scripts/paginacion.js" type="text/javascript"><?php echo '</script'; ?>
 >
 </body>
 </html>
