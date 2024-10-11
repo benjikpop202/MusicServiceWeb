@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2024-10-03 04:55:03
+/* Smarty version 5.4.0, created on 2024-10-11 03:37:15
   from 'file:templates/sesion.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_66fe07878138a2_33712213',
+  'unifunc' => 'content_6708814b3b8cd1_59513273',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ab5b254463a00636684a31ac217cc5a45d8b4b45' => 
     array (
       0 => 'templates/sesion.tpl',
-      1 => 1727389322,
+      1 => 1728610034,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_66fe07878138a2_33712213 (\Smarty\Template $_smarty_tpl) {
+function content_6708814b3b8cd1_59513273 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicServiceWeb\\templates';
 ?><!DOCTYPE html>
 <html lang="es">

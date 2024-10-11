@@ -60,4 +60,3 @@ switch ($request) {
         echo "Página no encontrada.";
         break;
 }
-
