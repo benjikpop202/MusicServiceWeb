@@ -12,7 +12,7 @@
 <body>
     <aside>
         <p>¿Ya tienes una cuenta?</p>
-        <button onclick="window.location.href='/login'">Iniciar Sesión</button>
+        <button onclick="window.location.href='/'">Iniciar Sesión</button>
     </aside>
     <section>
         <div class="Title">
