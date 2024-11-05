@@ -7,19 +7,24 @@ body {
     background-size: cover;
     position: relative;
 }
-aside{
+
+aside {
     width: 30%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-around; /* Corregido */
 }
-section{
-    position: relative;
+
+section {
     width: 70%;
+    display: flex;
+    flex-direction: column; /* Permite que los hijos se apilen verticalmente */
+    position: relative;
 }
-.User{
-    position: absolute;
+
+.User {
+    position: absolute; /* Considera cambiar a relative si es posible */
     left: 65%;
     top: 5%;
     display: flex;
@@ -31,18 +36,13 @@ section{
     border-radius: 30px;
     color: #f4f4f4;
 }
-.User span{
-  font-size: 3rem;
-  padding: 5px 5px;
-  border-radius: 100%;
-  color: #f4f4f4;
-  background: #333;
-}
-.Title{
+
+.Title {
     display: flex;
     align-items: center;
     margin-bottom: 10%;
 }
+
 .Title h1 {
     font-family: "Poppins", sans-serif;
     font-style: normal;
@@ -56,13 +56,14 @@ section{
     color: transparent;  
 }
 
-ul{
+ul {
     display: flex;
     width: 80%;
     height: 500px;
     flex-direction: column;
 }
-ul button{
+
+ul button {
     margin: 30px;
     padding: 25px;
     background: #f1438d;
@@ -73,27 +74,28 @@ ul button{
     transition: width 0.3s;
     width: 70%;
 }
-ul button:hover{
-   width: 80%;
+
+ul button:hover {
+    width: 80%;
 }
 
-.listas-container{
+.listas-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: absolute;
+    position: relative; /* Cambiado a relative */
     width: 60%;
     height: 70%;
+    margin: auto; /* Centra el contenedor en su padre */
     top: 10%;
-    left: 5%;
 }
 
-.listas-container h1{
+.listas-container h1 {
     height: 50px;
     text-align: center;
 }
 
-.listas{
+.listas {
     width: 40%;
     display: flex;
     align-items: center;
@@ -106,12 +108,12 @@ ul button:hover{
     transition: 0.3s;
 }
 
-.listas:hover{
+.listas:hover {
     cursor: pointer;
     transform: scale(1.1);
 }
 
-.listas span{
+.listas span {
     background: black;
     color: #f4f4f4;
     padding: 5px 5px;
@@ -119,12 +121,12 @@ ul button:hover{
     margin-left: 5px;
 }
 
-.listas p{
-  margin-left: 30px;
-  font-size: 1rem;
+.listas p {
+    margin-left: 30px;
+    font-size: 1rem;
 }
 
-#list-form{
+#list-form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -135,7 +137,7 @@ ul button:hover{
     box-shadow: 10px 10px 30px #333;
 }
 
-#cancelar{
+#cancelar {
     margin-top: 20px;
     background-color: red;
     padding: 10px 20px;
@@ -144,7 +146,7 @@ ul button:hover{
     cursor: pointer;
 }
 
-#submit{
+#submit {
     margin-top: 20px;
     background-color: #1fd655;
     padding: 10px 20px;
@@ -153,15 +155,17 @@ ul button:hover{
     cursor: pointer;
 }
 
-#list-name{
+#list-name {
     margin-top: 20px;
     padding: 10px;
     font-size: 1rem;
 }
-#list-form label{
+
+#list-form label {
     font-size: 1.5rem;
     font-weight: bolder;
 }
+
 #overlay {
     position: fixed;
     top: 0;
@@ -173,10 +177,10 @@ ul button:hover{
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 1;
+    z-index: 10; /* Aumentado para asegurarse de que está sobre otros elementos */
 }
 
-#btn-section{
+#btn-section {
     width: 30%;
     position: absolute;
     display: flex;
@@ -185,7 +189,7 @@ ul button:hover{
     left: 20%;
 }
 
-#btn-section button{
+#btn-section button {
     display: none;
     font-size: 1.3rem;
     font-weight: lighter;
@@ -197,6 +201,6 @@ ul button:hover{
     transition: 0.3s ease;
 }
 
-#btn-section button:hover{
+#btn-section button:hover {
     color: #333;
 }
