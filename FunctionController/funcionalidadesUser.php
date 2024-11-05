@@ -51,10 +51,6 @@ case 'obtenerListas':
     $usuarioId = isset($_GET['usuario_id']) ? $_GET['usuario_id'] : die("Falta el ID del usuario");
     $listaController->obtenerListas($usuarioId);
     break;
-
-default:
-    echo "Acción no reconocida";
-    break;
     
 }
 ?>
