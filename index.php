@@ -42,7 +42,7 @@ switch ($request) {
        $smarty->display('templates/principal.tpl');
         break;
 
-    case '/login':
+    case '/':
         $smarty->display('templates/sesion.tpl');
         break;
 
