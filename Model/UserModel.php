@@ -44,7 +44,41 @@ class Usuario {
 
         return false;
     }
+    
+    public function iniciarSesion($gmail, $password)
+{
+    // Consulta para buscar al usuario por correo electrónico
+    $query = "SELECT id, name, password, status FROM " . $this->table . " WHERE gmail = :gmail LIMIT 1";
 
+    $stmt = $this->db->prepare($query);
+
+    // Limpiar los datos
+    $gmail = htmlspecialchars(strip_tags($gmail));
+
+    // Enlazar el parámetro
+    $stmt->bindParam(':gmail', $gmail);
+
+    // Ejecutar la consulta
+    $stmt->execute();
+
+    // Comprobar si el usuario existe
+    if ($stmt->rowCount() > 0) {
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Verificar la contraseña
+        if (password_verify($password, $row['password'])) {
+            // Retornar los datos del usuario en caso de éxito
+            return [
+                'id' => $row['id'],
+                'name' => $row['name'],
+                'status' => $row['status']
+            ];
+        }
+    }
+
+    // Retornar false si no coincide la contraseña o el usuario no existe
+    return false;
+}
     // Obtener todos los usuarios
     public function obtenerUsuarios() {
         $query = "SELECT * FROM " . $this->table;

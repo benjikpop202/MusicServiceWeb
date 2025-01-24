@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2024-09-25 21:43:01
+/* Smarty version 5.4.0, created on 2025-01-24 21:42:20
   from 'file:templates/sesion.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_66f467c5ab75a6_07752519',
+  'unifunc' => 'content_6793fb2c6c0de7_48226979',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'de9c63821601c108fb4b1d87335a7a4fc9a2cecc' => 
     array (
       0 => 'templates/sesion.tpl',
-      1 => 1727293367,
+      1 => 1737751319,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_66f467c5ab75a6_07752519 (\Smarty\Template $_smarty_tpl) {
+function content_6793fb2c6c0de7_48226979 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicService\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -43,10 +43,10 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicService\\templates';
             music_note
             </span></div>
         <div class="login-container">
-            <form action="login.php" method="post">
+            <form action="index.php?action=iniciarSesion" method="post">
                 <div class="form-group">
-                    <label for="username">Nombre de Usuario:</label>
-                    <input type="text" id="username" name="username" required>
+                    <label for="username">Correo electronico:</label>
+                    <input type="email" id="email" name="gmail" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Contraseña:</label>
@@ -59,6 +59,5 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicService\\templates';
         </div>
     </section>
 </body>
-</html>
-<?php }
+</html><?php }
 }

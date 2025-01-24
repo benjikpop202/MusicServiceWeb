@@ -26,6 +26,9 @@ switch ($action) {
     case 'registrarse':
         $usuarioController->registrarse();
         break;
+    case 'iniciarSesion':
+        $usuarioController->iniciarSesion();
+        break;
 
     case 'obtenerUsuarios':
         $usuarioController->obtenerUsuarios();

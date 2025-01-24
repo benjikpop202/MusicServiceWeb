@@ -31,7 +31,38 @@ class UsuarioController {
             }
         }
     }
+    
+    public function iniciarSesion()
+{
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Verificar que los campos existan en el POST antes de asignarlos
+        $gmail = isset($_POST['gmail']) ? $_POST['gmail'] : '';
+        $password = isset($_POST['password']) ? $_POST['password'] : '';
 
+        // Verifica que los campos requeridos no estén vacíos
+        if (!empty($gmail) && !empty($password)) {
+            // Llama al modelo para comprobar las credenciales
+            $usuario = $this->usuario->iniciarSesion($gmail, $password);
+
+            if ($usuario) {
+                // Iniciar sesión si las credenciales son correctas
+                session_start();
+                $_SESSION['user_id'] = $usuario['id'];
+                $_SESSION['user_name'] = $usuario['name'];
+                $_SESSION['user_status'] = $usuario['status'];
+
+                echo "Inicio de sesión exitoso. Bienvenido, " . $usuario['name'] . ".";
+                // Puedes redirigir al usuario a otra página si es necesario
+                header('Location: /home/' . $usuario['id']);
+                exit();
+            } else {
+                echo "Correo electrónico o contraseña incorrectos.";
+            }
+        } else {
+            echo "Por favor, rellena todos los campos obligatorios.";
+        }
+    }
+}
     // Método para obtener todos los usuarios
     public function obtenerUsuarios() {
         $stmt = $this->usuario->obtenerUsuarios();

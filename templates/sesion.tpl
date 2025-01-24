@@ -19,10 +19,10 @@
             music_note
             </span></div>
         <div class="login-container">
-            <form action="login.php" method="post">
+            <form action="index.php?action=iniciarSesion" method="post">
                 <div class="form-group">
-                    <label for="username">Nombre de Usuario:</label>
-                    <input type="text" id="username" name="username" required>
+                    <label for="username">Correo electronico:</label>
+                    <input type="email" id="email" name="gmail" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Contraseña:</label>
