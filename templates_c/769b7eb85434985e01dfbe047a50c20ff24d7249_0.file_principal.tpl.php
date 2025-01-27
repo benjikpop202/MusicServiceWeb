@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2025-01-24 21:49:15
+/* Smarty version 5.4.0, created on 2025-01-27 14:06:10
   from 'file:templates/principal.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_6793fccb6006a4_86267836',
+  'unifunc' => 'content_679784c289efc0_83176133',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '769b7eb85434985e01dfbe047a50c20ff24d7249' => 
     array (
       0 => 'templates/principal.tpl',
-      1 => 1737748959,
+      1 => 1737983024,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6793fccb6006a4_86267836 (\Smarty\Template $_smarty_tpl) {
+function content_679784c289efc0_83176133 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\TrabajoFinalPhp\\MusicServiceWeb\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -51,14 +51,15 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\TrabajoFinalPhp\\MusicServiceWeb\\tem
         <ul>
          <button id="NewLista">+ Nueva lista</button>
          <button>Plataforma</button>
-         <button>Cuenta</button>
+         <button id="Cuenta" onclick="window.location.href='/cuenta'">Cuenta</button>
         </ul>
     </aside>
     <section>
         <div class="User"> <span class="material-symbols-outlined">
             person
             </span>
-            <h1>User Name</h1>
+            <h1><?php echo $_smarty_tpl->getValue('usuario')['name'];?>
+</h1>
         </div>
         <div id="list-content" class="listas-container">
           <h1>Listas</h1>

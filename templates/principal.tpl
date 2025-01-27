@@ -27,7 +27,7 @@
         <ul>
          <button id="NewLista">+ Nueva lista</button>
          <button>Plataforma</button>
-         <button>Cuenta</button>
+         <button id="Cuenta" onclick="window.location.href='/cuenta'">Cuenta</button>
         </ul>
     </aside>
     <section>
