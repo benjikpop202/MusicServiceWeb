@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2024-11-06 00:20:01
+/* Smarty version 5.4.0, created on 2025-01-27 12:37:42
   from 'file:templates/principal.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_672aa821971283_19943189',
+  'unifunc' => 'content_67977006517a35_02349002',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b63eadfa68ca264010437026877bc8a5f8495e5e' => 
     array (
       0 => 'templates/principal.tpl',
-      1 => 1730848793,
+      1 => 1737977856,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_672aa821971283_19943189 (\Smarty\Template $_smarty_tpl) {
+function content_67977006517a35_02349002 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicService\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -58,7 +58,8 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicService\\templates';
         <div class="User"> <span class="material-symbols-outlined">
             person
             </span>
-            <h1>User Name</h1>
+            <h1><?php echo $_smarty_tpl->getValue('usuario')['name'];?>
+</h1>
         </div>
         <div id="list-content" class="listas-container">
           <h1>Listas</h1>

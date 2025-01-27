@@ -34,7 +34,7 @@
         <div class="User"> <span class="material-symbols-outlined">
             person
             </span>
-            <h1>User Name</h1>
+            <h1>{$usuario['name']}</h1>
         </div>
         <div id="list-content" class="listas-container">
           <h1>Listas</h1>
