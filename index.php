@@ -46,7 +46,9 @@ switch ($request) {
     case '/':
         $smarty->display('templates/sesion.tpl');
         break;
-
+    case '/cuenta':
+        $smarty->display('templates/cuenta.tpl'); 
+        break;
     case '/register':
         $smarty->display('templates/registrarse.tpl');
         break;
