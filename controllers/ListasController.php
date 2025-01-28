@@ -14,10 +14,9 @@ class ListaController {
     public function crearLista() {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $this->lista->nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
-            $this->lista->es_publica = isset($_POST['es_publica']) ? $_POST['es_publica'] : '';
             $this->lista->usuario_id = isset($_POST['usuario_id']) ? $_POST['usuario_id'] : '';
 
-            if (!empty($this->lista->nombre) && isset($this->lista->es_publica) && !empty($this->lista->usuario_id)) {
+            if (!empty($this->lista->nombre) && !empty($this->lista->usuario_id)) {
                 if ($this->lista->crearLista()) {
                     echo "Lista creada con éxito.";
                 } else {

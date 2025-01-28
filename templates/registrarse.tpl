@@ -33,15 +33,31 @@
                     <label for="password">Contraseña:</label>
                     <input type="password" id="password" name="password" required>
                 </div>
-                <div class="form-group">
-                    <label for="status">Estado:</label>
-                    <input type="text" id="status" name="status" required>
-                </div>
+                <select class="form-group" id="accountType" name="status" required>
+                    <option value="free">Free</option>
+                    <option value="premium">Premium</option>
+                  </select>
+                  <div class="form-group hidden" id="cardNumberField">
+                    <label for="cardNumber">Número de tarjeta:</label>
+                    <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9101 1121">
+                  </div>
                 <div class="form-group">
                     <button type="submit">Registrarse</button>
                 </div>
             </form>
         </div>
     </section>
+    <script>
+        const accountTypeSelect = document.getElementById('accountType');
+        const cardNumberField = document.getElementById('cardNumberField');
+    
+        accountTypeSelect.addEventListener('change', () => {
+          if (accountTypeSelect.value === 'premium') {
+            cardNumberField.classList.remove('hidden');
+          } else {
+            cardNumberField.classList.add('hidden');
+          }
+        });
+    </script>
 </body>
 </html>

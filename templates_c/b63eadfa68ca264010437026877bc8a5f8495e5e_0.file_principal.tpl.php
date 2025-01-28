@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2025-01-27 12:37:42
+/* Smarty version 5.4.0, created on 2025-01-27 14:31:57
   from 'file:templates/principal.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_67977006517a35_02349002',
+  'unifunc' => 'content_67978acd541886_98229109',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b63eadfa68ca264010437026877bc8a5f8495e5e' => 
     array (
       0 => 'templates/principal.tpl',
-      1 => 1737977856,
+      1 => 1737984568,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_67977006517a35_02349002 (\Smarty\Template $_smarty_tpl) {
+function content_67978acd541886_98229109 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicService\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -35,10 +35,11 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicService\\templates';
 </head>
 <body>
     <div id="overlay">
-        <form id="list-form">
+        <form id="list-form" action="index.php?action=crearLista" method="post">
             <label for="list-name">Ingrese nombre de la Lista</label>
-            <input type="text" id="list-name" required>
-            
+            <input type="text" id="list-name" name="nombre" required>
+            <input type="hidden" name="usuario_id" value=<?php echo $_smarty_tpl->getValue('usuario')['id'];?>
+>
             <button id="submit" type="submit">Agregar</button>
             <button type="button" id="cancelar">Cancelar</button>
         </form>

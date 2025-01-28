@@ -44,7 +44,7 @@ switch ($action) {
         break;
 // Acciones de listas específicas a este archivo
 
-case 'crearListas':
+/*case 'crearListas':
     $nombreLista = isset($_POST['nombre']) ? $_POST['nombre'] : die("Falta el nombre de la lista");
     $usuarioId = isset($_POST['usuario_id']) ? $_POST['usuario_id'] : die("Falta el ID del usuario");
     $listaController->crearLista($nombreLista, $usuarioId);
@@ -53,7 +53,7 @@ case 'crearListas':
 case 'obtenerListas':
     $usuarioId = isset($_GET['usuario_id']) ? $_GET['usuario_id'] : die("Falta el ID del usuario");
     $listaController->obtenerListas($usuarioId);
-    break;
+    break;*/
     
 }
 ?>

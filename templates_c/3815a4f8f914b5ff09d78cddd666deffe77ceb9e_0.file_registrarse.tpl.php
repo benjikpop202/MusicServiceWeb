@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2024-10-10 15:36:42
+/* Smarty version 5.4.0, created on 2025-01-27 13:34:24
   from 'file:templates/registrarse.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_6707d86aca17c2_83998782',
+  'unifunc' => 'content_67977d50f24345_48995851',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3815a4f8f914b5ff09d78cddd666deffe77ceb9e' => 
     array (
       0 => 'templates/registrarse.tpl',
-      1 => 1728514486,
+      1 => 1737981248,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6707d86aca17c2_83998782 (\Smarty\Template $_smarty_tpl) {
+function content_67977d50f24345_48995851 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicService\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -36,7 +36,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicService\\templates';
 <body>
     <aside>
         <p>¿Ya tienes una cuenta?</p>
-        <button onclick="window.location.href='/login'">Iniciar Sesión</button>
+        <button onclick="window.location.href='/'">Iniciar Sesión</button>
     </aside>
     <section>
         <div class="Title">
@@ -57,16 +57,34 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicService\\templates';
                     <label for="password">Contraseña:</label>
                     <input type="password" id="password" name="password" required>
                 </div>
-                <div class="form-group">
-                    <label for="status">Estado:</label>
-                    <input type="text" id="status" name="status" required>
-                </div>
+                <select class="form-group" id="accountType" name="status" required>
+                    <option value="free">Free</option>
+                    <option value="premium">Premium</option>
+                  </select>
+                  <div class="form-group hidden" id="cardNumberField">
+                    <label for="cardNumber">Número de tarjeta:</label>
+                    <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9101 1121">
+                  </div>
                 <div class="form-group">
                     <button type="submit">Registrarse</button>
                 </div>
             </form>
         </div>
     </section>
+    <?php echo '<script'; ?>
+>
+        const accountTypeSelect = document.getElementById('accountType');
+        const cardNumberField = document.getElementById('cardNumberField');
+    
+        accountTypeSelect.addEventListener('change', () => {
+          if (accountTypeSelect.value === 'premium') {
+            cardNumberField.classList.remove('hidden');
+          } else {
+            cardNumberField.classList.add('hidden');
+          }
+        });
+    <?php echo '</script'; ?>
+>
 </body>
 </html><?php }
 }

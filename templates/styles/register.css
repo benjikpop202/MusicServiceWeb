@@ -11,6 +11,17 @@ body {
     background: #f4f4f4;
     background-size: cover;
 }
+.hidden {
+    display: none;
+  }
+
+#accountType{
+    background-color: #278fa2;
+    color: #f4f4f4;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+}
 aside {
     width: 30%;
 }
@@ -38,6 +49,7 @@ section {
 }
 .login-container {
     margin-left: 5%;
+    margin-button: 20px;
     background: #fff;
     padding: 20px;
     border-radius: 8px;

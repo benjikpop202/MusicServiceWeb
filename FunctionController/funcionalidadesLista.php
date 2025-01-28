@@ -10,13 +10,16 @@ $db = $database->getDb();
 
 // Instanciar el controlador de listas y cancionLista
 $listaController = new ListaController($db);
-$cancionListaController = new CancionListaController($db); // Instancia del controlador de CancionLista
+//$cancionListaController = new CancionListaController($db); // Instancia del controlador de CancionLista
 
 // Obtener la acción desde la URL o establecerla por defecto
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 
 // Gestionar las rutas de acciones de listas y canciones
 switch ($action) {
+    case 'crearLista':
+        $listaController->crearLista();
+        break;
     // Crear una canción
     case 'crearCancion':
         $cancionListaController->agregarCancionALista(); // Añadir canción a una lista
@@ -25,7 +28,7 @@ switch ($action) {
     // Obtener todas las canciones de una lista
     case 'obtenerCanciones':
         $lista_id = isset($_GET['lista_id']) ? $_GET['lista_id'] : die("Falta el ID de la lista");
-        $cancionListaController->obtenerCancionesPorLista($lista_id);
+       // $cancionListaController->obtenerCancionesPorLista($lista_id);
         break;
 
     // Obtener una lista por ID
@@ -45,9 +48,7 @@ switch ($action) {
         $listaController->eliminarLista($id);
         break;
 
-    default:
-        echo "Acción no válida.";
-        break;
+    
 }
 ?>
 

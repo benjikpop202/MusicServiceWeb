@@ -2,6 +2,7 @@
 //require_once(SERVERPATH.'\libs\Smarty.class.php');
 require_once('libs\Smarty.class.php');
 include_once('./FunctionController/funcionalidadesUser.php'); // Incluye funcionalidadesUser
+include_once('./FunctionController/funcionalidadesLista.php');
 
 // Configuración de Smarty
 $smarty = new Smarty\Smarty;

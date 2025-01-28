@@ -11,10 +11,10 @@
 </head>
 <body>
     <div id="overlay">
-        <form id="list-form">
+        <form id="list-form" action="index.php?action=crearLista" method="post">
             <label for="list-name">Ingrese nombre de la Lista</label>
-            <input type="text" id="list-name" required>
-            
+            <input type="text" id="list-name" name="nombre" required>
+            <input type="hidden" name="usuario_id" value={$usuario['id']}>
             <button id="submit" type="submit">Agregar</button>
             <button type="button" id="cancelar">Cancelar</button>
         </form>

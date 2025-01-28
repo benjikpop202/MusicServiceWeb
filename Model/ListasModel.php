@@ -13,18 +13,16 @@ class Listas {
     }
 
     public function crearLista() {
-        $query = "INSERT INTO " . $this->table . " (nombre, es_publica, usuario_id) 
-                  VALUES (:nombre, :es_publica, :usuario_id)";
+        $query = "INSERT INTO " . $this->table . " (nombre, usuario_id) 
+                  VALUES (:nombre, :usuario_id)";
 
         $stmt = $this->db->prepare($query);
 
         // Limpiar los datos
         $this->nombre = htmlspecialchars(strip_tags($this->nombre));
-        $this->es_publica = htmlspecialchars(strip_tags($this->es_publica));
         $this->usuario_id = htmlspecialchars(strip_tags($this->usuario_id));
 
         $stmt->bindParam(':nombre', $this->nombre);
-        $stmt->bindParam(':es_publica', $this->es_publica);
         $stmt->bindParam(':usuario_id', $this->usuario_id);
 
         if ($stmt->execute()) {
