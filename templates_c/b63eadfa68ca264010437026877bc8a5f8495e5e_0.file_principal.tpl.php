@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2025-01-27 14:31:57
+/* Smarty version 5.4.0, created on 2025-01-28 20:26:09
   from 'file:templates/principal.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_67978acd541886_98229109',
+  'unifunc' => 'content_67992f516ee550_16019261',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b63eadfa68ca264010437026877bc8a5f8495e5e' => 
     array (
       0 => 'templates/principal.tpl',
-      1 => 1737984568,
+      1 => 1738091859,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_67978acd541886_98229109 (\Smarty\Template $_smarty_tpl) {
+function content_67992f516ee550_16019261 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicService\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -35,11 +35,12 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicService\\templates';
 </head>
 <body>
     <div id="overlay">
-        <form id="list-form" action="index.php?action=crearLista" method="post">
+        <form id="list-form">
             <label for="list-name">Ingrese nombre de la Lista</label>
             <input type="text" id="list-name" name="nombre" required>
-            <input type="hidden" name="usuario_id" value=<?php echo $_smarty_tpl->getValue('usuario')['id'];?>
->
+            <input type="hidden" id="usuario-id" name="usuario_id" value="<?php echo $_smarty_tpl->getValue('usuario')['id'];?>
+">
+            <input type="hidden" id="es_publica" name="es_publica" value="false">
             <button id="submit" type="submit">Agregar</button>
             <button type="button" id="cancelar">Cancelar</button>
         </form>
@@ -52,7 +53,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicService\\templates';
         <ul>
          <button id="NewLista">+ Nueva lista</button>
          <button>Plataforma</button>
-         <button>Cuenta</button>
+         <button id="Cuenta" onclick="window.location.href='/cuenta'">Cuenta</button>
         </ul>
     </aside>
     <section>

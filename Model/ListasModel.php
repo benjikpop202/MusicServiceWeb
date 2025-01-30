@@ -14,7 +14,7 @@ class Listas {
 
     public function crearLista() {
         $query = "INSERT INTO " . $this->table . " (nombre, usuario_id) 
-                  VALUES (:nombre, :usuario_id)";
+                  VALUES (:nombre,:usuario_id)";
 
         $stmt = $this->db->prepare($query);
 
@@ -26,16 +26,27 @@ class Listas {
         $stmt->bindParam(':usuario_id', $this->usuario_id);
 
         if ($stmt->execute()) {
-            return true;
+
+           return true;
+            
         }
 
         return false;
     }
 
-    public function obtenerListas() {
-        $query = "SELECT * FROM " . $this->table;
-
+    public function obtenerListasUser() {
+        $query = "SELECT * FROM " . $this->table. "WHERE usuario_id = :usuario_id";
         $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':usuario_id', $this->usuario_id);
+        $stmt->execute();
+
+        return $stmt;
+    }
+
+    public function obtenerListasPlataforma() {
+        $query = "SELECT * FROM " . $this->table. "WHERE es_publica = :es_publica";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':es_publica', true);
         $stmt->execute();
 
         return $stmt;

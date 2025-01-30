@@ -15,6 +15,9 @@ $listaController = new ListaController($db);
 // Obtener la acción desde la URL o establecerla por defecto
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 
+
+
+
 // Gestionar las rutas de acciones de listas y canciones
 switch ($action) {
     case 'crearLista':

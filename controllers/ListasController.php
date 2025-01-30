@@ -12,21 +12,29 @@ class ListaController {
 
     // Método para crear una nueva lista
     public function crearLista() {
+        header('Content-Type: application/json'); // Especificar JSON en la respuesta
+        
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $this->lista->nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
             $this->lista->usuario_id = isset($_POST['usuario_id']) ? $_POST['usuario_id'] : '';
-
+    
             if (!empty($this->lista->nombre) && !empty($this->lista->usuario_id)) {
                 if ($this->lista->crearLista()) {
-                    echo "Lista creada con éxito.";
+                    echo json_encode(["success" => true, "message" => "Lista creada con éxito."]);
+                    exit();
                 } else {
-                    echo "Error al crear la lista.";
+                    echo json_encode(["success" => false, "message" => "Error al crear la lista."]);
+                    http_response_code(500); // Código de error en caso de fallo
+                    exit();
                 }
             } else {
-                echo "Por favor, rellena todos los campos obligatorios.";
+                echo json_encode(["success" => false, "message" => "Por favor, rellena todos los campos."]);
+                http_response_code(400);
+                exit();
             }
         }
     }
+    
 
     // Método para obtener todas las listas
     public function obtenerListas() {
