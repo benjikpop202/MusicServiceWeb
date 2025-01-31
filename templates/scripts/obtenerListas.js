@@ -3,7 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 function obtenerListas() {
     fetch('http://localhost:8000/index.php?action=obtenerListasUser')
-        .then(response => response.json())
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Error en la respuesta del servidor');
+      }
+      return response.json();
+  })
         .then(data => {
             if (data.error) {
                 console.error("Error:", data.error);

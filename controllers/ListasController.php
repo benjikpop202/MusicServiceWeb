@@ -55,11 +55,14 @@ class ListaController {
 
     // Método para obtener todas las listas
     public function obtenerListasUser() {
-        header("Content-Type: application/json");
-        $stmt = $this->lista->obtenerListasUser();
-        $listas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        echo json_encode($listas);
+        try {
+            header("Content-Type: application/json");
+            $stmt = $this->lista->obtenerListasUser();
+            $listas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            echo json_encode($listas);
+        } catch (Exception $e) {
+            echo json_encode(['error' => 'Error al obtener listas: ' . $e->getMessage()]);
+        }
     }
 
     // Método para obtener una lista por su ID
