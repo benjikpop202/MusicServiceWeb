@@ -18,7 +18,25 @@ class ListaController {
             $this->lista->nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
             $this->lista->usuario_id = isset($_POST['usuario_id']) ? $_POST['usuario_id'] : '';
     
+            // Verificar que se haya completado el nombre y el ID del usuario
             if (!empty($this->lista->nombre) && !empty($this->lista->usuario_id)) {
+                
+                // Verificar si ya existe una lista con el mismo nombre para el mismo usuario
+                $query = "SELECT COUNT(*) FROM listas WHERE nombre = :nombre AND usuario_id = :usuario_id";
+                $stmt = $this->db->prepare($query);
+                $stmt->bindParam(':nombre', $this->lista->nombre);
+                $stmt->bindParam(':usuario_id', $this->lista->usuario_id);
+                $stmt->execute();
+                $count = $stmt->fetchColumn();
+
+                // Si existe una lista con el mismo nombre, retornar un mensaje de error
+                if ($count > 0) {
+                    echo json_encode(["success" => false, "message" => "Ya existe una lista con este nombre para el usuario."]);
+                    http_response_code(400); // Código de error para validación de duplicados
+                    exit();
+                }
+
+                // Si la lista no existe, crear la nueva lista
                 if ($this->lista->crearLista()) {
                     echo json_encode(["success" => true, "message" => "Lista creada con éxito."]);
                     exit();
@@ -29,12 +47,11 @@ class ListaController {
                 }
             } else {
                 echo json_encode(["success" => false, "message" => "Por favor, rellena todos los campos."]);
-                http_response_code(400);
+                http_response_code(400); // Código de error si faltan datos
                 exit();
             }
         }
     }
-    
 
     // Método para obtener todas las listas
     public function obtenerListas() {
@@ -91,3 +108,4 @@ class ListaController {
     }
 }
 ?>
+
