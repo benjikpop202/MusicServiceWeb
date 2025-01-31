@@ -10,6 +10,7 @@ btnList.addEventListener('click', () => {
     try{
         overlay.style.display = 'flex'; 
         listNameInput.value = ""
+        
     }
     catch(error){
         console.log(error)

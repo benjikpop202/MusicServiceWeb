@@ -45,6 +45,7 @@
             <button id="siguiente"> Siguiente > </button>
         </div>
     </section>
+    <script src="/templates/scripts/obtenerListas.js" type="text/javascript"></script>
     <script src="/templates/scripts/paginacion.js" type="text/javascript"></script>
 </body>
 </html>

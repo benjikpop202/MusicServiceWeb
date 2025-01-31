@@ -37,8 +37,9 @@ class ListaController {
     
 
     // Método para obtener todas las listas
-    public function obtenerListas() {
-        $stmt = $this->lista->obtenerListas();
+    public function obtenerListasUser() {
+        header("Content-Type: application/json");
+        $stmt = $this->lista->obtenerListasUser();
         $listas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         echo json_encode($listas);
