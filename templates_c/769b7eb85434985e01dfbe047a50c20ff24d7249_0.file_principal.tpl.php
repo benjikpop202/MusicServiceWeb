@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2025-01-31 12:52:47
+/* Smarty version 5.4.0, created on 2025-01-31 14:09:15
   from 'file:templates/principal.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_679cb98fa47bc0_15026215',
+  'unifunc' => 'content_679ccb7b016b84_57988374',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '769b7eb85434985e01dfbe047a50c20ff24d7249' => 
     array (
       0 => 'templates/principal.tpl',
-      1 => 1738323806,
+      1 => 1738328556,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_679cb98fa47bc0_15026215 (\Smarty\Template $_smarty_tpl) {
+function content_679ccb7b016b84_57988374 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\TrabajoFinalPhp\\MusicServiceWeb\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -71,6 +71,9 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\TrabajoFinalPhp\\MusicServiceWeb\\tem
             <button id="siguiente"> Siguiente > </button>
         </div>
     </section>
+    <?php echo '<script'; ?>
+ src="/templates/scripts/obtenerListas.js" type="text/javascript"><?php echo '</script'; ?>
+>
     <?php echo '<script'; ?>
  src="/templates/scripts/paginacion.js" type="text/javascript"><?php echo '</script'; ?>
 >
