@@ -1,13 +1,18 @@
 <?php
+
+use Smarty\Smarty;
+
 include_once(__DIR__ . '/../Model/ListasModel.php');
 
 class ListaController {
+    private $smarty = null;
     private $db;
     private $lista;
 
     public function __construct($db) {
         $this->db = $db;
         $this->lista = new Listas($db);
+        $this->smarty = new Smarty();
     }
 
     // Método para crear una nueva lista
@@ -55,11 +60,22 @@ class ListaController {
 
     // Método para obtener todas las listas
     public function obtenerListasUser() {
-        header("Content-Type: application/json");
-        $stmt = $this->lista->obtenerListasUser();
-        $listas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    header("Content-Type: application/json");
 
-        echo json_encode($listas);
+    $stmt = $this->lista->obtenerListasUser();
+    $listas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if (!$listas) {
+        echo json_encode(["error" => "No se encontraron listas"]);
+        exit;
+    }
+
+    // Asignar listas a Smarty
+    $this->smarty->assign('listas', $listas);
+    
+    // Convertir el template a JSON y enviarlo
+    echo json_encode($this->smarty->fetch('../templates/principal.tpl'));
+    exit;
     }
 
     // Método para obtener una lista por su ID

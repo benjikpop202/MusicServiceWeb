@@ -37,10 +37,10 @@ class Listas {
     public function obtenerListasUser() {
         $query = "SELECT * FROM " . $this->table . " WHERE usuario_id = :usuario_id";
         $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':usuario_id', $this->usuario_id);
+        $stmt->bindParam(':usuario_id', $this->usuario_id, PDO::PARAM_INT);
         $stmt->execute();
 
-        return $stmt;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function obtenerListasPlataforma() {

@@ -1,6 +1,7 @@
 <?php
 //require_once(SERVERPATH.'\libs\Smarty.class.php');
 require_once('libs\Smarty.class.php');
+require_once 'controllers/ListasController.php';
 include_once('./FunctionController/funcionalidadesUser.php'); // Incluye funcionalidadesUser
 include_once('./FunctionController/funcionalidadesLista.php');
 
@@ -40,7 +41,7 @@ if (preg_match('/^\/home\/(\d+)$/', $request, $matches)) {
 // Gestión de las rutas
 switch ($request) {
     case '/home/:id':
-       $smarty->display('templates/principal.tpl');
+        $smarty->display('templates/principal.tpl');
         break;
 
     case '/':

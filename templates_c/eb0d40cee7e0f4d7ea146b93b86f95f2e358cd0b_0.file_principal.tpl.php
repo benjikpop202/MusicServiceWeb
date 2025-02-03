@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2025-01-31 13:34:49
+/* Smarty version 5.4.0, created on 2025-02-03 14:10:57
   from 'file:templates/principal.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_679cc369c07c05_22876789',
+  'unifunc' => 'content_67a0c06151a043_47478098',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'eb0d40cee7e0f4d7ea146b93b86f95f2e358cd0b' => 
     array (
       0 => 'templates/principal.tpl',
-      1 => 1738326419,
+      1 => 1738588234,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_679cc369c07c05_22876789 (\Smarty\Template $_smarty_tpl) {
+function content_67a0c06151a043_47478098 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicServiceWeb\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -64,16 +64,28 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicServiceWeb\\templates';
 </h1>
         </div>
         <div id="list-content" class="listas-container">
-          <h1>Listas</h1>
+            <?php if ((null !== ($_smarty_tpl->getValue('listas') ?? null)) && $_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('listas')) > 0) {?>
+            <h1>Listas</h1>
+            <?php
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('listas'), 'lista');
+$foreach0DoElse = true;
+foreach ($_from ?? [] as $_smarty_tpl->getVariable('lista')->value) {
+$foreach0DoElse = false;
+?>
+              <button class="listas"><span class="material-symbols-outlined">music_note</span><p><?php echo $_smarty_tpl->getValue('lista')['nombre'];?>
+</p></button>
+            <?php
+}
+$_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
+          <?php } else { ?>
+             <h1>Sin listas</h1>
+          <?php }?>
         </div>
         <div id="btn-section">
             <button id="anterior"> < Anterior </button>
             <button id="siguiente"> Siguiente > </button>
         </div>
     </section>
-    <?php echo '<script'; ?>
- src="/templates/scripts/obtenerListas.js" type="text/javascript"><?php echo '</script'; ?>
->
     <?php echo '<script'; ?>
  src="/templates/scripts/paginacion.js" type="text/javascript"><?php echo '</script'; ?>
 >
