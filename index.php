@@ -49,7 +49,21 @@ if (preg_match('/^\/home\/(\d+)$/', $request, $matches)) {
     $smarty->display('templates/principal.tpl');
     exit();
 }
+if (preg_match('/^\/home\/(\d+)\/cuenta$/', $request, $matches)) {
+    $userId = $matches[1];
 
+    // Obtener los datos del usuario desde la base de datos
+    $query = "SELECT * FROM usuarios WHERE id = :id";
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(':id', $userId);
+    $stmt->execute();
+    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Pasar los datos del usuario a la plantilla Smarty
+    $smarty->assign('usuario', $usuario);
+    $smarty->display('templates/cuenta.tpl');
+    exit();
+}
 // Gestión de las rutas
 switch ($request) {
     case '/home/:id':
