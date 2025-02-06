@@ -88,7 +88,7 @@ class Usuario {
 
         return $stmt;
     }
-
+    
     // Obtener un usuario por ID
     public function obtenerUsuarioPorId() {
         $query = "SELECT * FROM " . $this->table . " WHERE id = :id LIMIT 0,1";
@@ -108,31 +108,25 @@ class Usuario {
             $this->status = $row['status'];
         }
     }
+    public function actualizarUsuario($id, $datos) {
+        $campos = [];
+        $valores = [];
 
-    // Actualizar un usuario
-    public function actualizarUsuario() {
-        $query = "UPDATE " . $this->table . " 
-                  SET password = :password
-                  WHERE id = :id";
-
-        $stmt = $this->db->prepare($query);
-
-        // Limpiar los datos
-        $this->password = htmlspecialchars(strip_tags($this->password));
-        $this->id = htmlspecialchars(strip_tags($this->id));
-
-        // Enlazar los parámetros
-        $stmt->bindParam(':password', $this->password);
-        $stmt->bindParam(':id', $this->id);
-
-        // Ejecutar la consulta
-        if ($stmt->execute()) {
-            return true;
+        foreach ($datos as $campo => $valor) {
+            $campos[] = "$campo = ?";
+            $valores[] = $valor;
         }
 
-        return false;
-    }
+        if (empty($campos)) {
+            return false; // No hay datos para actualizar
+        }
 
+        $sql = "UPDATE usuarios SET " . implode(", ", $campos) . " WHERE id = ?";
+        $valores[] = $id;
+
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute($valores);
+    }
     // Eliminar un usuario
     public function eliminarUsuario() {
         $query = "DELETE FROM " . $this->table . " WHERE id = :id";
