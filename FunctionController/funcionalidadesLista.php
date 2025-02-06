@@ -20,9 +20,6 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 
 // Gestionar las rutas de acciones de listas y canciones
 switch ($action) {
-    case 'obtenerListasUser':
-        $listaController->obtenerListasUser();
-        break;
     case 'crearLista':
         $listaController->crearLista();
         break;

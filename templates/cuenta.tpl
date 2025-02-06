@@ -8,14 +8,14 @@
 </head>
 <body>
     <header>
-        <h1>Bienvenido, cebu</h1>
+        <h1>Bienvenido {$usuario['name']}</h1>
     </header>
     <main id="account-container">
         <section id="user-info">
             <h2>Detalles de tu cuenta</h2>
-            <p><strong>Nombre:</strong> cebu</p>
-            <p><strong>Email:</strong> cebu@gmail.com</p>
-            <p><strong>Estado:</strong> Free</p>
+            <p><strong>Nombre:</strong> {$usuario['name']}</p>
+            <p><strong>Email:</strong> {$usuario['gmail']}</p>
+            <p><strong>Estado:</strong> {$usuario['status']}</p>
         </section>
         <div id="action-buttons">
             <form action="/cuenta/actualizar" method="post">
@@ -26,6 +26,7 @@
                 <input type="hidden" name="id" value="cebu">
                 <button type="submit" id="delete-btn">Eliminar Cuenta</button>
             </form>
+            <script src="/templates/scripts/cuenta.js" type="text/javascript"></script>
         </div>
     </main>
 </body>

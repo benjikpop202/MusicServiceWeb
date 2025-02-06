@@ -28,7 +28,7 @@
         <ul>
          <button id="NewLista">+ Nueva lista</button>
          <button>Plataforma</button>
-         <button id="Cuenta" onclick="window.location.href='/cuenta'">Cuenta</button>
+         <button id="Cuenta" onclick="window.location.href='/home/{$usuario['id']}/cuenta'">Cuenta</button>
         </ul>
     </aside>
     <section>

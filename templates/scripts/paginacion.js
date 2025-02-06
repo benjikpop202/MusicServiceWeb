@@ -1,4 +1,5 @@
-const btnList = document.getElementById("NewLista");
+document.addEventListener("DOMContentLoaded", function () {
+    const btnList = document.getElementById("NewLista");
 const fromList = document.getElementById("list-form");
 const overlay = document.getElementById('overlay');
 let listNameInput = document.getElementById('list-name')
@@ -149,3 +150,5 @@ function ShowListas(nodos) {
         }
                     
     })
+});
+

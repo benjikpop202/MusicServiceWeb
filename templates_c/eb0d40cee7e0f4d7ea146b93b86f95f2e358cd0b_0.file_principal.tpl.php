@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2025-02-03 14:10:57
+/* Smarty version 5.4.0, created on 2025-02-05 15:22:47
   from 'file:templates/principal.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_67a0c06151a043_47478098',
+  'unifunc' => 'content_67a3743733cc23_60257087',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'eb0d40cee7e0f4d7ea146b93b86f95f2e358cd0b' => 
     array (
       0 => 'templates/principal.tpl',
-      1 => 1738588234,
+      1 => 1738765350,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_67a0c06151a043_47478098 (\Smarty\Template $_smarty_tpl) {
+function content_67a3743733cc23_60257087 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicServiceWeb\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -53,7 +53,8 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicServiceWeb\\templates';
         <ul>
          <button id="NewLista">+ Nueva lista</button>
          <button>Plataforma</button>
-         <button id="Cuenta" onclick="window.location.href='/cuenta'">Cuenta</button>
+         <button id="Cuenta" onclick="window.location.href='/home/<?php echo $_smarty_tpl->getValue('usuario')['id'];?>
+/cuenta'">Cuenta</button>
         </ul>
     </aside>
     <section>
@@ -64,6 +65,10 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicServiceWeb\\templates';
 </h1>
         </div>
         <div id="list-content" class="listas-container">
+            <?php $_smarty_debug = new \Smarty\Debug;
+ $_smarty_debug->display_debug($_smarty_tpl);
+unset($_smarty_debug);
+?>
             <?php if ((null !== ($_smarty_tpl->getValue('listas') ?? null)) && $_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('listas')) > 0) {?>
             <h1>Listas</h1>
             <?php
