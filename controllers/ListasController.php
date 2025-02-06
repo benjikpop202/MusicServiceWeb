@@ -59,25 +59,10 @@ class ListaController {
     }
 
     // Método para obtener todas las listas
-    public function obtenerListasUser() {
-    header("Content-Type: application/json");
-
-    $stmt = $this->lista->obtenerListasUser();
-    $listas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    if (!$listas) {
-        echo json_encode(["error" => "No se encontraron listas"]);
-        exit;
+    public function obtenerListasPorUsuario($usuario_id) {
+        $stmt = $this->lista->obtenerListasPorUsuario($usuario_id);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-    // Asignar listas a Smarty
-    $this->smarty->assign('listas', $listas);
-    
-    // Convertir el template a JSON y enviarlo
-    echo json_encode($this->smarty->fetch('../templates/principal.tpl'));
-    exit;
-    }
-
     // Método para obtener una lista por su ID
     public function obtenerListaPorId($id) {
         $this->lista->id = $id;

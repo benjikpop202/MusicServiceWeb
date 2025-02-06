@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2025-01-31 14:09:15
+/* Smarty version 5.4.0, created on 2025-02-06 12:33:14
   from 'file:templates/principal.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_679ccb7b016b84_57988374',
+  'unifunc' => 'content_67a49dfab13d16_70924435',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '769b7eb85434985e01dfbe047a50c20ff24d7249' => 
+    'a75ccf0aeec0a50d74ae41f9d8b53e97a3a3ed07' => 
     array (
       0 => 'templates/principal.tpl',
-      1 => 1738328556,
+      1 => 1738801818,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_679ccb7b016b84_57988374 (\Smarty\Template $_smarty_tpl) {
-$_smarty_current_dir = 'C:\\xampp\\htdocs\\TrabajoFinalPhp\\MusicServiceWeb\\templates';
+function content_67a49dfab13d16_70924435 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\xampp\\htdocs\\FinalPhp\\MusicServiceWeb\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
 <head>
@@ -64,16 +64,28 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\TrabajoFinalPhp\\MusicServiceWeb\\tem
 </h1>
         </div>
         <div id="list-content" class="listas-container">
-          <h1>Listas</h1>
+            <?php if ((null !== ($_smarty_tpl->getValue('listas') ?? null)) && $_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('listas')) > 0) {?>
+            <h1>Listas</h1>
+            <?php
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('listas'), 'lista');
+$foreach0DoElse = true;
+foreach ($_from ?? [] as $_smarty_tpl->getVariable('lista')->value) {
+$foreach0DoElse = false;
+?>
+              <button class="listas"><span class="material-symbols-outlined">music_note</span><p><?php echo $_smarty_tpl->getValue('lista')['nombre'];?>
+</p></button>
+            <?php
+}
+$_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
+          <?php } else { ?>
+             <h1>Sin listas</h1>
+          <?php }?>
         </div>
         <div id="btn-section">
             <button id="anterior"> < Anterior </button>
             <button id="siguiente"> Siguiente > </button>
         </div>
     </section>
-    <?php echo '<script'; ?>
- src="/templates/scripts/obtenerListas.js" type="text/javascript"><?php echo '</script'; ?>
->
     <?php echo '<script'; ?>
  src="/templates/scripts/paginacion.js" type="text/javascript"><?php echo '</script'; ?>
 >

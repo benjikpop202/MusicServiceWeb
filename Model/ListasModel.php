@@ -34,21 +34,20 @@ class Listas {
         return false;
     }
 
-    public function obtenerListasUser() {
+    // Obtener listas por usuario
+    public function obtenerListasPorUsuario($usuario_id) {
         $query = "SELECT * FROM " . $this->table . " WHERE usuario_id = :usuario_id";
         $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':usuario_id', $this->usuario_id, PDO::PARAM_INT);
+        $stmt->bindParam(':usuario_id', $usuario_id, PDO::PARAM_INT);
         $stmt->execute();
-
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt;
     }
 
-    public function obtenerListasPlataforma() {
-        $query = "SELECT * FROM " . $this->table. "WHERE es_publica = :es_publica";
+    // Obtener todas las listas
+    public function obtenerListas() {
+        $query = "SELECT * FROM " . $this->table;
         $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':es_publica', true);
         $stmt->execute();
-
         return $stmt;
     }
 
