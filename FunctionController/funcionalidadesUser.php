@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_URI'] == '/register') {
     $action = 'registrarse';
 }
 
+
 // Gestionar las rutas de acciones de usuario (registrarse, obtener, eliminar, actualizar)
 switch ($action) {
     case 'registrarse':

@@ -84,29 +84,35 @@ class UsuarioController {
 
     // Método para actualizar solo la contraseña del usuario
     public function actualizarUsuario() {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Asegurarse de que el ID del usuario esté presente
-            if (isset($_POST['id']) && !empty($_POST['id'])) {
-                $this->usuario->id = $_POST['id'];
-
-                // Verificar si se ha proporcionado una nueva contraseña
-                if (!empty($_POST['password'])) {
-                    // Encriptar la nueva contraseña
-                    $this->usuario->password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-                    
-                    // Llamar al método del modelo que solo actualiza la contraseña
-                    if ($this->usuario->actualizarUsuario()) {
-                        echo "Contraseña actualizada con éxito.";
-                    } else {
-                        echo "Error al actualizar la contraseña.";
-                    }
-                } else {
-                    echo "No se proporcionó una nueva contraseña.";
-                }
-            } else {
-                echo "Falta el ID del usuario.";
+            header("Content-Type: application/json");
+    
+            $id = $_POST['id'] ?? null;
+            $name = $_POST['name'] ?? null;
+            $gmail = $_POST['gmail'] ?? null;
+            $status = $_POST['status'] ?? null;
+    
+            if (!$id) {
+                echo json_encode(["error" => "ID de usuario requerido"]);
+                exit;
             }
-        }
-    }
+    
+            $datos = [];
+            if ($name) $datos["name"] = $name;
+            if ($gmail) $datos["email"] = $gmail;
+            if ($status) $datos["status"] = $status;
+    
+            if (empty($datos)) {
+                echo json_encode(["error" => "No hay datos para actualizar"]);
+                exit;
+            }
+    
+            $resultado = $this->usuario->actualizarUsuario($id, $datos);
+    
+            if ($resultado) {
+                echo json_encode(["mensaje" => "Usuario actualizado correctamente"]);
+            } else {
+                echo json_encode(["error" => "No se pudo actualizar el usuario"]);
+            }
+}
 }
 ?>
