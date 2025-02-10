@@ -38,10 +38,13 @@ form.addEventListener('submit', async (e) => {
 const FormDelete = document.getElementById("deleteForm")
 FormDelete.addEventListener('submit', async (e) => {
     e.preventDefault(); 
-    const id = document.getElementById("id")
+    const id = document.getElementById("id").value
     try {
         const response = await fetch(`http://localhost:8000/index.php?action=eliminarUsuario&id=${id}`, {
             method: 'DELETE',
+            headers: {
+                "Accept": "application/json", // Asegura que el backend devuelva JSON
+            },
         });
 
         const data = await response.json();

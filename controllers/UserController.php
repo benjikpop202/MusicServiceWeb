@@ -73,12 +73,17 @@ class UsuarioController {
 
     // Método para eliminar un usuario
     public function eliminarUsuario($id) {
+     header('Content-Type: application/json; charset=utf-8');
+        try {
+        $resultado = $this->usuario->eliminarUsuario($id);
         //$this->usuario->id = $id;
-
-        if ($this->usuario->eliminarUsuario($id)) {
-            echo "Usuario eliminado con éxito.";
+        if ($resultado) {
+            echo json_encode(["mensaje" => "Usuario eliminado correctamente"]);
         } else {
-            echo "Error al eliminar el usuario.";
+            echo json_encode(["mensaje" => "no se pudo eliminar el usuario"]);
+        }
+        } catch (Exception $e) {
+            echo json_encode(["error" => "Error al eliminar el usuario: " . $e->getMessage()]);
         }
     }
 

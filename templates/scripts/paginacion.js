@@ -41,6 +41,7 @@ fromList.addEventListener('submit', async (e) => {
         if (data.success) {
             console.log("✅ Lista creada:", data.message);
             alert(data.message);
+            location.reload();
 
             // Aquí puedes agregar la nueva lista al DOM si es necesario
             const newListButton = document.createElement('button');
