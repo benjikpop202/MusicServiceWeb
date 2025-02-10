@@ -41,7 +41,13 @@
             {if isset($listas) && $listas|@count > 0}
             <h1>Listas</h1>
             {foreach from=$listas item=lista}
-              <button class="listas"><span class="material-symbols-outlined">music_note</span><p>{$lista.nombre}</p></button>
+              
+              <button class="listas" onclick="window.location.href='/home/{$usuario.id}/lista/{$lista.id}'">
+                <span class="material-symbols-outlined">music_note</span>
+                <p>{$lista.nombre}</p>
+              </button>
+ 
+              
             {/foreach}
           {else}
              <h1>Sin listas</h1>

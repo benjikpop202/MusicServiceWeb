@@ -1,0 +1,75 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenedor principal */
+.container {
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+/* Barra lateral para los botones */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-right: 20px;
+}
+
+/* Estilo base para los botones */
+.action-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px; /* Forma ovalada */
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+/* Botón de editar */
+.edit-button {
+    background-color: #4CAF50; /* Verde */
+}
+
+.edit-button:hover {
+    background-color: #45a049;
+}
+
+/* Botón de eliminar */
+.delete-button {
+    background-color: #f44336; /* Rojo */
+}
+
+.delete-button:hover {
+    background-color: #da190b;
+}
+
+/* Botón de agregar */
+.add-button {
+    background-color: #008CBA; /* Azul */
+}
+
+.add-button:hover {
+    background-color: #007bb5;
+}
+
+/* Contenido principal */
+.content {
+    flex: 1;
+    text-align: center;
+}
+
+/* Estilo del título */
+h1 {
+    font-size: 36px;
+    color: #333;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 0;
+}
+

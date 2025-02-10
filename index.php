@@ -1,8 +1,7 @@
 <?php
-//require_once(SERVERPATH.'\libs\Smarty.class.php');
-require_once('libs\Smarty.class.php');
+require_once('libs/Smarty.class.php');
 require_once 'controllers/ListasController.php';
-include_once('./FunctionController/funcionalidadesUser.php'); // Incluye funcionalidadesUser
+include_once('./FunctionController/funcionalidadesUser.php');
 include_once('./FunctionController/funcionalidadesLista.php');
 
 // Configuración de Smarty
@@ -14,18 +13,16 @@ $smarty->setCacheDir(__DIR__ . '/cache');
 $smarty->setConfigDir(__DIR__ . '/configs');
 
 // Limpiar la caché y los archivos compilados de Smarty
-$smarty->clearAllCache();  // Limpiar la caché de todas las plantillas
-$smarty->clearCompiledTemplate();  // Limpiar las plantillas compiladas
+$smarty->clearAllCache();
+$smarty->clearCompiledTemplate();
 
 // Configuración de la base de datos
 $database = new Database();
 $db = $database->getDb();
 
-// Prueba la instalación de Smarty para asegurarte de que todo esté configurado correctamente
-//$smarty->testInstall();
-
 $request = $_SERVER['REQUEST_URI'];
 
+// Ruta para la página principal del usuario
 if (preg_match('/^\/home\/(\d+)$/', $request, $matches)) {
     $userId = $matches[1];
 
@@ -43,12 +40,14 @@ if (preg_match('/^\/home\/(\d+)$/', $request, $matches)) {
     $stmtListas->execute();
     $listas = $stmtListas->fetchAll(PDO::FETCH_ASSOC);
 
-    // Pasar los datos del usuario a la plantilla Smarty
+    // Pasar los datos del usuario y las listas a la plantilla Smarty
     $smarty->assign('usuario', $usuario);
     $smarty->assign('listas', $listas);
-    $smarty->display('templates/principal.tpl');
+    $smarty->display('principal.tpl');
     exit();
 }
+
+// Ruta para la cuenta del usuario
 if (preg_match('/^\/home\/(\d+)\/cuenta$/', $request, $matches)) {
     $userId = $matches[1];
 
@@ -61,34 +60,53 @@ if (preg_match('/^\/home\/(\d+)\/cuenta$/', $request, $matches)) {
 
     // Pasar los datos del usuario a la plantilla Smarty
     $smarty->assign('usuario', $usuario);
-    $smarty->display('templates/cuenta.tpl');
+    $smarty->display('cuenta.tpl');
     exit();
 }
-// Gestión de las rutas
-switch ($request) {
-    case '/home/:id':
-        $smarty->display('templates/principal.tpl');
-        break;
 
+// Ruta para mostrar una lista específica
+if (preg_match('/^\/home\/(\d+)\/lista\/(\d+)$/', $request, $matches)) {
+    $userId = $matches[1];
+    $listaId = $matches[2];
+
+    // Obtener los datos de la lista desde la base de datos
+    $query = "SELECT * FROM listas WHERE id = :listaId AND usuario_id = :userId";
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(':listaId', $listaId);
+    $stmt->bindParam(':userId', $userId);
+    $stmt->execute();
+    $lista = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($lista) {
+        // Pasar los datos de la lista a la plantilla Smarty
+        $smarty->assign('lista', $lista);
+        $smarty->display('lista.tpl');
+    } else {
+        http_response_code(404);
+        echo "Lista no encontrada.";
+    }
+    exit();
+}
+
+// Gestión de las rutas restantes
+switch ($request) {
     case '/':
-        $smarty->display('templates/sesion.tpl');
+        $smarty->display('sesion.tpl');
         break;
     case '/cuenta':
-        $smarty->display('templates/cuenta.tpl'); 
+        $smarty->display('cuenta.tpl');
         break;
     case '/register':
-        $smarty->display('templates/registrarse.tpl');
+        $smarty->display('registrarse.tpl');
         break;
-
     // Redirigir las acciones del usuario a funcionalidadesUser.php
     case (preg_match('/^\/user\//', $request) ? true : false):
-        include_once(__DIR__ . '/functionController/funcionalidadesUser.php');
+        include_once(__DIR__ . '/FunctionController/funcionalidadesUser.php');
         break;
-     // Redirigir las acciones relacionadas con listas a funcionalidadesLista.php
-     case (preg_match('/^\/listas\//', $request) ? true : false):
+    // Redirigir las acciones relacionadas con listas a funcionalidadesLista.php
+    case (preg_match('/^\/listas\//', $request) ? true : false):
         include_once(__DIR__ . '/FunctionController/funcionalidadesLista.php');
-        break;     
-
+        break;
     default:
         http_response_code(404);
         echo "Página no encontrada.";
