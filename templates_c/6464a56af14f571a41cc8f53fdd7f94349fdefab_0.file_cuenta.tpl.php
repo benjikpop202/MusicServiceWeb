@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2025-02-08 19:01:24
+/* Smarty version 5.4.0, created on 2025-02-10 04:04:06
   from 'file:templates/cuenta.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_67a79bf445f192_35761261',
+  'unifunc' => 'content_67a96ca62e2ff8_22127049',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6464a56af14f571a41cc8f53fdd7f94349fdefab' => 
     array (
       0 => 'templates/cuenta.tpl',
-      1 => 1739037501,
+      1 => 1739156021,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_67a79bf445f192_35761261 (\Smarty\Template $_smarty_tpl) {
+function content_67a96ca62e2ff8_22127049 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicServiceWeb\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -68,8 +68,9 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicServiceWeb\\templates';
                     <button id="submit" type="submit">Actualizar</button>
                 </form>
             </div>
-            <form action="/cuenta/eliminar" method="post" onsubmit="return confirm('¿Estás seguro de eliminar tu cuenta?')">
-                <input type="hidden" name="id" value="cebu">
+            <form id="deleteForm" onsubmit="return confirm('¿Estás seguro de eliminar tu cuenta?')">
+                <input type="hidden" id="id" name="id" value="<?php echo $_smarty_tpl->getValue('usuario')['id'];?>
+">
                 <button type="submit" id="delete-btn">Eliminar Cuenta</button>
             </form>
         </div>

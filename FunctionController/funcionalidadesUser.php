@@ -23,39 +23,25 @@ if ($_SERVER['REQUEST_URI'] == '/register') {
 
 
 // Gestionar las rutas de acciones de usuario (registrarse, obtener, eliminar, actualizar)
-switch ($action) {
-    case 'registrarse':
-        $usuarioController->registrarse();
-        break;
-    case 'iniciarSesion':
-        $usuarioController->iniciarSesion();
-        break;
-
-    case 'obtenerUsuarios':
-        $usuarioController->obtenerUsuarios();
-        break;
-
-    case 'eliminarUsuario':
-        $id = isset($_GET['id']) ? $_GET['id'] : die("Falta el ID");
-        $usuarioController->eliminarUsuario($id);
-        break;
-
-    case 'actualizarUsuario':
-        $usuarioController->actualizarUsuario();
-        break;
-// Acciones de listas específicas a este archivo
-
-/*case 'crearListas':
-    $nombreLista = isset($_POST['nombre']) ? $_POST['nombre'] : die("Falta el nombre de la lista");
-    $usuarioId = isset($_POST['usuario_id']) ? $_POST['usuario_id'] : die("Falta el ID del usuario");
-    $listaController->crearLista($nombreLista, $usuarioId);
-    break;
-
-case 'obtenerListas':
-    $usuarioId = isset($_GET['usuario_id']) ? $_GET['usuario_id'] : die("Falta el ID del usuario");
-    $listaController->obtenerListas($usuarioId);
-    break;*/
-    
+if (isset($_GET['action'])) {
+    switch ($_GET['action']) {
+        case 'registrarse':
+            $usuarioController->registrarse();
+            exit();
+        case 'iniciarSesion':
+            $usuarioController->iniciarSesion();
+            exit();
+        case 'obtenerUsuarios':
+            $usuarioController->obtenerUsuarios();
+            exit();
+        case 'eliminarUsuario':
+            $id = isset($_GET['id']) ? $_GET['id'] : die("Falta el ID");
+            $usuarioController->eliminarUsuario($id);
+            exit();
+        case 'actualizarUsuario':
+            $usuarioController->actualizarUsuario();
+            exit();
+    }
 }
 ?>
 

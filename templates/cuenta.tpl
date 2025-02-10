@@ -37,8 +37,8 @@
                     <button id="submit" type="submit">Actualizar</button>
                 </form>
             </div>
-            <form action="/cuenta/eliminar" method="post" onsubmit="return confirm('¿Estás seguro de eliminar tu cuenta?')">
-                <input type="hidden" name="id" value="cebu">
+            <form id="deleteForm" onsubmit="return confirm('¿Estás seguro de eliminar tu cuenta?')">
+                <input type="hidden" id="id" name="id" value="{$usuario['id']}">
                 <button type="submit" id="delete-btn">Eliminar Cuenta</button>
             </form>
         </div>

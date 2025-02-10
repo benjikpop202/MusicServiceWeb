@@ -73,9 +73,9 @@ class UsuarioController {
 
     // Método para eliminar un usuario
     public function eliminarUsuario($id) {
-        $this->usuario->id = $id;
+        //$this->usuario->id = $id;
 
-        if ($this->usuario->eliminarUsuario()) {
+        if ($this->usuario->eliminarUsuario($id)) {
             echo "Usuario eliminado con éxito.";
         } else {
             echo "Error al eliminar el usuario.";
@@ -84,28 +84,27 @@ class UsuarioController {
 
     // Método para actualizar solo la contraseña del usuario
     public function actualizarUsuario() {
-            header("Content-Type: application/json");
+        header("Content-Type: application/json");
     
-            $id = $_POST['id'] ?? null;
-            $name = $_POST['name'] ?? null;
-            $gmail = $_POST['gmail'] ?? null;
-            $status = $_POST['status'] ?? null;
+        $id = $_POST['id'] ?? null;
+        $name = $_POST['name'] ?? null;
+        $status = $_POST['status'] ?? null;
     
-            if (!$id) {
-                echo json_encode(["error" => "ID de usuario requerido"]);
-                exit;
-            }
+        if (!$id) {
+            echo json_encode(["error" => "ID de usuario requerido"]);
+            exit;
+        }
     
-            $datos = [];
-            if ($name) $datos["name"] = $name;
-            if ($gmail) $datos["email"] = $gmail;
-            if ($status) $datos["status"] = $status;
+        $datos = [];
+        if ($name) $datos["name"] = $name;
+        if ($status) $datos["status"] = $status;
     
-            if (empty($datos)) {
-                echo json_encode(["error" => "No hay datos para actualizar"]);
-                exit;
-            }
+        if (empty($datos)) {
+            echo json_encode(["error" => "No hay datos para actualizar"]);
+            exit;
+        }
     
+        try {
             $resultado = $this->usuario->actualizarUsuario($id, $datos);
     
             if ($resultado) {
@@ -113,6 +112,9 @@ class UsuarioController {
             } else {
                 echo json_encode(["error" => "No se pudo actualizar el usuario"]);
             }
-}
+        } catch (Exception $e) {
+            echo json_encode(["error" => "Error en la actualización: " . $e->getMessage()]);
+        }
+    }
 }
 ?>

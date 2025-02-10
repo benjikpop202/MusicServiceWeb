@@ -128,14 +128,10 @@ class Usuario {
         return $stmt->execute($valores);
     }
     // Eliminar un usuario
-    public function eliminarUsuario() {
+    public function eliminarUsuario($id) {
         $query = "DELETE FROM " . $this->table . " WHERE id = :id";
-
         $stmt = $this->db->prepare($query);
-
-        $this->id = htmlspecialchars(strip_tags($this->id));
-
-        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
         if ($stmt->execute()) {
             return true;
