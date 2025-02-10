@@ -8,11 +8,15 @@
 </head>
 <body>
     <div class="container">
-        <h1>{$lista.nombre}</h1>
-        <div class="button-group">
-            <button class="action-button edit-button">Editar lista</button>
-            <button class="action-button delete-button">Eliminar lista</button>
-            <button class="action-button add-button">Agregar canciones</button>
+        <div class="title-container">
+            <h1>Lista {$lista.nombre}</h1>
+        </div>
+        <div class="content">
+            <div class="sidebar">
+                <button class="action-button edit-button">Editar lista</button>
+                <button class="action-button delete-button">Eliminar lista</button>
+                <button class="action-button add-button">Agregar canciones</button>
+            </div>
         </div>
     </div>
 </body>

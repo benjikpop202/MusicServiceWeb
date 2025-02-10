@@ -4,37 +4,63 @@ body {
     background-color: #f4f4f9;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 /* Contenedor principal */
 .container {
-    display: flex;
-    align-items: flex-start;
-    padding: 20px;
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
-/* Barra lateral para los botones */
+/* Contenedor del título */
+.title-container {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+/* Estilo del título */
+h1 {
+    font-size: 64px;
+    font-weight: bold;
+    color: #333;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenedor de los botones */
 .sidebar {
+    position: absolute;
+    left: 50px;
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin-right: 20px;
+    gap: 25px;
 }
 
 /* Estilo base para los botones */
 .action-button {
-    padding: 10px 20px;
+    padding: 15px 30px;
     border: none;
-    border-radius: 20px; /* Forma ovalada */
+    border-radius: 25px;
     color: #fff;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 20px;
     transition: background-color 0.3s ease;
+    width: 250px;
+    text-align: center;
 }
 
 /* Botón de editar */
 .edit-button {
-    background-color: #4CAF50; /* Verde */
+    background-color: #4CAF50;
 }
 
 .edit-button:hover {
@@ -43,7 +69,7 @@ body {
 
 /* Botón de eliminar */
 .delete-button {
-    background-color: #f44336; /* Rojo */
+    background-color: #f44336;
 }
 
 .delete-button:hover {
@@ -52,24 +78,12 @@ body {
 
 /* Botón de agregar */
 .add-button {
-    background-color: #008CBA; /* Azul */
+    background-color: #008CBA;
 }
 
 .add-button:hover {
     background-color: #007bb5;
 }
 
-/* Contenido principal */
-.content {
-    flex: 1;
-    text-align: center;
-}
 
-/* Estilo del título */
-h1 {
-    font-size: 36px;
-    color: #333;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    margin: 0;
-}
 
