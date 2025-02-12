@@ -1,16 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 .container{
     width: 100%;
     min-height: 100vh;
-    background: rgb(238,174,202);
-    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
     display: flex;
     flex-direction: column;
 }
 
 h1{
-    font-family: "Poppins", sans-serif;
-    color: #557395;
+    font-family: Arial, sans-serif;
+    color:gray;
 }
 
 .content{
@@ -23,11 +21,11 @@ h1{
 }
 
 .lista{
-    width: 10rem;
+    width: 15rem;
     display: flex;
     align-items: center;
     padding: 5px;
-    background: linear-gradient(45deg, blueviolet, violet);
+    background: linear-gradient(45deg, #3e594d, #5f988e);
     color: #f4f4f4;
     border-radius: 50px;
     margin: 20px;
@@ -35,7 +33,7 @@ h1{
     transition: 0.3s;
 }
 
-lista:hover{
+.lista:hover{
     cursor: pointer;
     transform: scale(1.1);
 }

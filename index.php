@@ -77,11 +77,34 @@ if (preg_match('/^\/home\/(\d+)\/lista\/(\d+)$/', $request, $matches)) {
     $stmt->execute();
     $lista = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($lista) {
+    $query2 = "SELECT * FROM usuarios WHERE id = :userId";
+    $stmt2 = $db->prepare($query2);
+    $stmt2->bindParam('userId', $userId);
+    $stmt2->execute();
+    $user = $stmt2->fetch(PDO::FETCH_ASSOC);
+
+    if ($lista && $user) {
         // Pasar los datos de la lista a la plantilla Smarty
+        $smarty->assign('usuario', $user);
         $smarty->assign('lista', $lista);
         $smarty->display('lista.tpl');
     } else {
+        http_response_code(404);
+        echo "Lista no encontrada.";
+    }
+    exit();
+}
+if (preg_match('/^\/plataforma\/(\d+)$/', $request, $matches)) {
+     $listaId = $matches[1];
+     $query = "SELECT * FROM listas WHERE id = :listaId ";
+     $stmt = $db->prepare($query);
+     $stmt->bindParam(':listaId', $listaId);
+     $stmt->execute();
+     $lista = $stmt->fetch(PDO::FETCH_ASSOC);
+     if($lista){
+        $smarty->assign("lista", $lista);
+        $smarty->display('listaPublica.tpl');
+    }else {
         http_response_code(404);
         echo "Lista no encontrada.";
     }
@@ -97,7 +120,14 @@ switch ($request) {
         $smarty->display('cuenta.tpl');
         break;
     case '/plataforma':
-        $smarty->display('plataforma.tpl');
+        $query = "SELECT * FROM listas WHERE es_publica = true";
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        $listas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if($listas){
+         $smarty->assign("listas", $listas);
+         $smarty->display('plataforma.tpl');
+        }
         break;
     case '/register':
         $smarty->display('registrarse.tpl');

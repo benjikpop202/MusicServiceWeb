@@ -35,6 +35,7 @@ class Listas {
         return $stmt;
     }
 
+
     public function obtenerListaPorId() {
         $query = "SELECT * FROM " . $this->table . " WHERE id = :id LIMIT 1";
         $stmt = $this->db->prepare($query);
