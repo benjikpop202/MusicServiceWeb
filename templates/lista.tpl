@@ -20,6 +20,12 @@
                 <input type="hidden" id="usuario-id" name="usuario_id" value="{$lista.usuario_id}">
                 </button>
                 <button class="action-button add-button">Agregar canciones</button>
+                {if $usuario.status == 'premium'}
+                  <button class="action-button" id='publicLista'>
+                    <input type="hidden" id="public" value="{$lista.es_publica}">
+                    Publicar lista
+                  </button>
+                {/if}
             </div>
         </div>
     </div>

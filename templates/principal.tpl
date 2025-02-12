@@ -27,7 +27,7 @@
         </div>
         <ul>
          <button id="NewLista">+ Nueva lista</button>
-         <button>Plataforma</button>
+         <button onclick="window.location.href='/plataforma'">Plataforma</button>
          <button id="Cuenta" onclick="window.location.href='/home/{$usuario['id']}/cuenta'">Cuenta</button>
         </ul>
     </aside>

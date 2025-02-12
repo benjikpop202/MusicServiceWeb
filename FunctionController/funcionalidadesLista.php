@@ -20,7 +20,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 if ($action) {
     switch ($action) {
         case 'obtenerListasPorUsuario':
-            $listaController->obtenerListasUser();
+          //  $listaController->obtenerListasUser();
             exit();
         case 'crearLista':
             $listaController->crearLista();
@@ -33,7 +33,7 @@ if ($action) {
                 die("Falta el ID de la lista");
             }
             $lista_id = $_GET['lista_id'];
-            $cancionListaController->obtenerCancionesPorLista($lista_id);
+           // $cancionListaController->obtenerCancionesPorLista($lista_id);
             exit();
         case 'obtenerListaPorId':
             if (!isset($_GET['id'])) {

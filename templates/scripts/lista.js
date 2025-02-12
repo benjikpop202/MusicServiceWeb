@@ -84,6 +84,39 @@ function obtenerUsuarioId() {
 
 
 
+const Publicar = document.getElementById("publicLista")
+Publicar.addEventListener("click", async ()=>{
+    const Lista = document.getElementById("public")
+    const listaId = document.getElementById("listaId").value.trim();
+    if (!confirm("publicar Lista ?")) return;
+    Lista.value = "true"
+    let formData = new FormData();
+    formData.append("id", listaId);
+    formData.append("es_publica", Lista.value);
+    try {
+        const response = await fetch("http://localhost:8000/index.php?action=actualizarLista", {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.error) {
+            alert(data.error);
+        } else {
+            alert(data.mensaje);
+            location.reload(); // Recarga la página
+        }
+    } catch (error) {
+        console.error("Error al actualizar la lista:", error);
+        alert("Hubo un error al actualizar la lista.");
+    }
+
+} )
+
+
+
+
 
 
 

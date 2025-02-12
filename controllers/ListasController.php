@@ -112,7 +112,6 @@ class ListaController {
     }
 }
 
-  
     
     // Método para eliminar una lista
 public function eliminarLista($id) {
