@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+.container{
+    width: 100%;
+    min-height: 100vh;
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    display: flex;
+    flex-direction: column;
+}
+
+h1{
+    font-family: "Poppins", sans-serif;
+    color: #557395;
+}
+
+.content{
+  margin-top: 15%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columnas */
+  grid-template-rows: repeat(4, 1fr); /* 4 filas */
+  gap: 10px; /* Espacio entre elementos */
+  padding: 10px; /
+}
+
+.lista{
+    width: 10rem;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    background: linear-gradient(45deg, blueviolet, violet);
+    color: #f4f4f4;
+    border-radius: 50px;
+    margin: 20px;
+    border: none;
+    transition: 0.3s;
+}
+
+lista:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.lista span{
+    background: black;
+    color: #f4f4f4;
+    padding: 5px 5px;
+    border-radius: 100%;
+    margin-left: 5px;
+}
+
+.lista p{
+  margin-left: 30px;
+  font-size: 1rem;
+}

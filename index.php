@@ -96,6 +96,9 @@ switch ($request) {
     case '/cuenta':
         $smarty->display('cuenta.tpl');
         break;
+    case '/plataforma':
+        $smarty->display('plataforma.tpl');
+        break;
     case '/register':
         $smarty->display('registrarse.tpl');
         break;
