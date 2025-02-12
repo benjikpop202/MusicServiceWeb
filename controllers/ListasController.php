@@ -5,7 +5,7 @@ use Smarty\Smarty;
 include_once(__DIR__ . '/../Model/ListasModel.php');
 
 class ListaController {
-    private $smarty = null;
+    private $smarty;
     private $db;
     private $lista;
 
@@ -17,16 +17,13 @@ class ListaController {
 
     // Método para crear una nueva lista
     public function crearLista() {
-        header('Content-Type: application/json'); // Especificar JSON en la respuesta
+        header('Content-Type: application/json');
         
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $this->lista->nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
-            $this->lista->usuario_id = isset($_POST['usuario_id']) ? $_POST['usuario_id'] : '';
+            $this->lista->nombre = $_POST['nombre'] ?? '';
+            $this->lista->usuario_id = $_POST['usuario_id'] ?? '';
     
-            // Verificar que se haya completado el nombre y el ID del usuario
             if (!empty($this->lista->nombre) && !empty($this->lista->usuario_id)) {
-                
-                // Verificar si ya existe una lista con el mismo nombre para el mismo usuario
                 $query = "SELECT COUNT(*) FROM listas WHERE nombre = :nombre AND usuario_id = :usuario_id";
                 $stmt = $this->db->prepare($query);
                 $stmt->bindParam(':nombre', $this->lista->nombre);
@@ -34,80 +31,103 @@ class ListaController {
                 $stmt->execute();
                 $count = $stmt->fetchColumn();
 
-                // Si existe una lista con el mismo nombre, retornar un mensaje de error
                 if ($count > 0) {
                     echo json_encode(["success" => false, "message" => "Ya existe una lista con este nombre para el usuario."]);
-                    http_response_code(400); // Código de error para validación de duplicados
+                    http_response_code(400);
                     exit();
                 }
 
-                // Si la lista no existe, crear la nueva lista
                 if ($this->lista->crearLista()) {
                     echo json_encode(["success" => true, "message" => "Lista creada con éxito."]);
                     exit();
                 } else {
                     echo json_encode(["success" => false, "message" => "Error al crear la lista."]);
-                    http_response_code(500); // Código de error en caso de fallo
+                    http_response_code(500);
                     exit();
                 }
             } else {
                 echo json_encode(["success" => false, "message" => "Por favor, rellena todos los campos."]);
-                http_response_code(400); // Código de error si faltan datos
+                http_response_code(400);
                 exit();
             }
         }
     }
 
-    // Método para obtener todas las listas
+    // Método para obtener todas las listas de un usuario
     public function obtenerListasPorUsuario($usuario_id) {
         $stmt = $this->lista->obtenerListasPorUsuario($usuario_id);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
     // Método para obtener una lista por su ID
     public function obtenerListaPorId($id) {
         $this->lista->id = $id;
         $this->lista->obtenerListaPorId();
 
-        $lista = [
+        echo json_encode([
             'id' => $this->lista->id,
             'nombre' => $this->lista->nombre,
             'es_publica' => $this->lista->es_publica,
             'usuario_id' => $this->lista->usuario_id
-        ];
-
-        echo json_encode($lista);
+        ]);
     }
 
     // Método para actualizar una lista
     public function actualizarLista() {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST['id']) && !empty($_POST['id'])) {
-                $this->lista->id = $_POST['id'];
-                $this->lista->nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
-                $this->lista->es_publica = isset($_POST['es_publica']) ? (bool)$_POST['es_publica'] : false;
-                $this->lista->usuario_id = isset($_POST['usuario_id']) ? $_POST['usuario_id'] : '';
+    header("Content-Type: application/json");
 
-                if ($this->lista->actualizarLista()) {
-                    echo "Lista actualizada con éxito.";
-                } else {
-                    echo "Error al actualizar la lista.";
-                }
-            } else {
-                echo "Falta el ID de la lista.";
-            }
-        }
+    // Obtener los datos enviados por POST
+    $id = $_POST['id'] ?? null;
+    $nombre = $_POST['nombre'] ?? null;
+    $es_publica = $_POST['es_publica'] ?? null;
+
+    // Validar que el ID exista
+    if (!$id) {
+        echo json_encode(["error" => "ID de la lista requerido"]);
+        exit;
     }
 
-    // Método para eliminar una lista
-    public function eliminarLista($id) {
-        $this->lista->id = $id;
+    // Preparar los datos para actualizar
+    $datos = [];
+    if ($nombre) $datos["nombre"] = $nombre;
+    if (!is_null($es_publica)) $datos["es_publica"] = $es_publica; 
 
-        if ($this->lista->eliminarLista()) {
-            echo "Lista eliminada con éxito.";
+    // Si no hay datos para actualizar
+    if (empty($datos)) {
+        echo json_encode(["error" => "No hay datos para actualizar"]);
+        exit;
+    }
+
+    try {
+        // Llamar al modelo para actualizar la lista
+        $resultado = $this->lista->actualizarLista($id, $datos);
+
+        if ($resultado) {
+            echo json_encode(["mensaje" => "Lista actualizada correctamente"]);
         } else {
-            echo "Error al eliminar la lista.";
+            echo json_encode(["error" => "No se pudo actualizar la lista"]);
         }
+    } catch (Exception $e) {
+        echo json_encode(["error" => "Error en la actualización: " . $e->getMessage()]);
     }
 }
-?>
 
+  
+    
+    // Método para eliminar una lista
+public function eliminarLista($id) {
+    header('Content-Type: application/json; charset=utf-8');
+
+    try {
+        $resultado = $this->lista->eliminarLista($id);
+
+        if ($resultado) {
+            echo json_encode(["mensaje" => "Lista eliminada correctamente"]);
+        } else {
+            echo json_encode(["mensaje" => "No se pudo eliminar la lista"]);
+        }
+    } catch (Exception $e) {
+        echo json_encode(["error" => "Error al eliminar la lista: " . $e->getMessage()]);
+    }
+}
+}
