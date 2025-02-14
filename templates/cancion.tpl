@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sesión Canciones</title>
-    <link rel="stylesheet" href="/templates/styles/canciones.css">
+    <link rel="stylesheet" href="{$base_url}/templates/styles/canciones.css">
 </head>
 <body>
     <!-- Título centrado y grande -->
@@ -21,30 +21,50 @@
         <div class="form-container">
             <h2>Cargar Canción</h2>
             <form id="cargarCancionForm">
-                <input type="text" name="nombre" placeholder="Nombre" required>
-                <input type="text" name="artista" placeholder="Artista" required>
-                <input type="text" name="genero" placeholder="Género" required>
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+                <input type="text" id="artista" name="artista" placeholder="Artista" required>
+                <input type="text" id="genero" name="genero" placeholder="Género" required>
                 <button type="submit" class="btn">Guardar Canción</button>
             </form>
             <button class="btn cerrar" id="cerrarOverlay">Cerrar</button>
         </div>
     </div>
 
-    <!-- Información de Canción -->
-    <div class="info-cancion" id="infoCancion" style="display: none;">
-        <h3>Nombre: <span id="nombreCancion"></span></h3>
-        <p>Artista: <span id="artistaCancion"></span></p>
-        <p>Género: <span id="generoCancion"></span></p>
-        <button class="btn" id="eliminarCancionBtn">Eliminar Canción</button>
-    </div>
-
-    <!-- Mensajes -->
+    <!-- Mensaje de Éxito -->
     <p class="mensaje" id="mensajeExito" style="display: none;">¡Canción cargada exitosamente!</p>
-    <p class="mensaje" id="mensajeEliminada" style="display: none;">¡Canción eliminada exitosamente!</p>
 
-    <script src="/templates/scripts/cancion.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const cargarCancionBtn = document.getElementById("cargarCancionBtn");
+            const cuentaCancionBtn = document.getElementById("cuentaCancionBtn");
+            const formOverlay = document.getElementById("formOverlay");
+            const mensajeExito = document.getElementById("mensajeExito");
+
+            // Mostrar formulario de cargar canción
+            cargarCancionBtn.addEventListener("click", function() {
+                formOverlay.style.display = "block";
+                mensajeExito.style.display = "none"; // Oculta el mensaje de éxito
+            });
+
+            // Cerrar formulario
+            document.getElementById("cerrarOverlay").addEventListener("click", function() {
+                formOverlay.style.display = "none";
+            });
+
+            // Manejar el envío del formulario
+            document.getElementById("cargarCancionForm").addEventListener("submit", function(event) {
+                event.preventDefault();
+                formOverlay.style.display = "none";
+                mensajeExito.style.display = "block"; // Muestra el mensaje de éxito
+            });
+        });
+    </script>
 </body>
 </html>
+
+
+
+
 
 
 
