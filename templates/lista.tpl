@@ -19,7 +19,8 @@
                 Eliminar lista
                 <input type="hidden" id="usuario-id" name="usuario_id" value="{$lista.usuario_id}">
                 </button>
-                <button class="action-button add-button">Agregar canciones</button>
+                <button class="action-button add-button" id="agregarCancionBtn" data-lista-id="{$lista.id}" data-user-id="{$usuario.id}">Agregar canciones</button>
+
                 {if $usuario.status == 'premium'}
                   <button class="action-button" id='publicLista'>
                     <input type="hidden" id="public" value="{$lista.es_publica}">

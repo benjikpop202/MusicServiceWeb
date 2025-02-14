@@ -140,6 +140,28 @@ switch ($request) {
     case (preg_match('/^\/listas\//', $request) ? true : false):
         include_once(__DIR__ . '/FunctionController/funcionalidadesLista.php');
         break;
+    case (preg_match('/^\/home\/(\d+)\/lista\/(\d+)\/agregarCancion$/', $request, $matches) ? true : false):
+            $userId = $matches[1];
+            $listaId = $matches[2];
+            
+            // Verificar que la lista pertenece al usuario
+            $query = "SELECT * FROM listas WHERE id = :listaId AND usuario_id = :userId";
+            $stmt = $db->prepare($query);
+            $stmt->bindParam(':listaId', $listaId);
+            $stmt->bindParam(':userId', $userId);
+            $stmt->execute();
+            $lista = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+            if ($lista) {
+                // Pasar los datos a la plantilla Smarty
+                $smarty->assign('lista', $lista);
+                $smarty->display('cancion.tpl');
+            } else {
+                http_response_code(404);
+                echo "Lista no encontrada.";
+            }
+            break;
+        
     default:
         http_response_code(404);
         echo "Página no encontrada.";

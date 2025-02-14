@@ -5,7 +5,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("btnActualizarLista").addEventListener("click", actualizarLista);
     document.getElementById("btnEliminarLista").addEventListener("click", eliminarLista);
+
+    
+    const agregarCancionBtn = document.getElementById("agregarCancionBtn");
+    if (agregarCancionBtn) {
+        agregarCancionBtn.addEventListener("click", () => {
+            const listaId = agregarCancionBtn.getAttribute("data-lista-id");
+            const userId = agregarCancionBtn.getAttribute("data-user-id");
+            window.location.href = `/home/${userId}/lista/${listaId}/agregarCancion`;
+        });
+    }
 });
+
+
 
 async function actualizarLista() {
     const listaId = document.getElementById("listaId").value.trim();
@@ -41,6 +53,7 @@ async function actualizarLista() {
         alert("Hubo un error al actualizar la lista.");
     }
 }
+
 
 async function eliminarLista() {
     const listaId = document.getElementById("listaId").value.trim();
