@@ -7,9 +7,31 @@
     <link rel="stylesheet" href="/templates/styles/lista.css"/>
 </head>
 <body>
-    <div class="container">
+   
+<!-- Formulario para agregar canciones (Inicialmente oculto) -->
+<div id="overlay-cancion" class="overlay" style="display: none;">
+    <form id="form-Cancion" class="overlay-content">
+        <label for="nombreCancion">Nombre de la Canción:</label><br>
+        <input type="text" id="nombreCancion" placeholder="Ingrese el nombre" required>
+        <label for="artistaCancion">Artista:</label><br>
+        <input type="text" id="artistaCancion" placeholder="Ingrese el artista" required>
+        <label for="generoCancion">Género:</label><br>
+        <input type="text" id="generoCancion" placeholder="Ingrese el género" required>
+        <button type="submit" id="guardarCancion">Agregar</button>
+        <button type="button" id="btnCancelar">Cancelar</button>
+    </form>
+</div>
+
+<!-- Lista de canciones -->
+<div id="listaCanciones">
+    <h2>Listado de Canciones</h2>
+    <ul id="canciones">
+        <!-- Aquí se irán agregando las canciones -->
+    </ul>
+</div>
+
         <div class="title-container">
-            <h1 id="nombreLista">Lista {$lista.nombre}</h1>
+            <h1 id="nombreLista">Canciones {$lista.nombre}</h1>
         </div>
         <div class="content">
             <div class="sidebar">
@@ -43,8 +65,10 @@
     </div>
 
     <script src="/templates/scripts/lista.js"></script>
+    
 </body>
 </html>
+
 
 
 

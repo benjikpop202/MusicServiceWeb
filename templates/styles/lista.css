@@ -150,6 +150,71 @@ h1 {
 body pre {
     display: none;
 }
+/* Estilo del Formulario de Canción */
+.form-cancion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 400px;
+    background: #f4f4f4;
+    box-shadow: 10px 10px 30px #333;
+}
+
+.form-cancion h2 {
+    text-align: center;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    color: #555;
+    font-size: 14px;
+}
+
+.form-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-cancion button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.form-cancion button[type="submit"] {
+    background-color: #4CAF50;
+}
+
+.form-cancion button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.form-cancion button[type="button"] {
+    background-color: #f44336;
+}
+
+.form-cancion button[type="button"]:hover {
+    background-color: #da190b;
+}
+
+
 
 
 
