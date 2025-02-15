@@ -1,6 +1,5 @@
 <?php
-
-class Canciones {
+ class Canciones {
     private $db;
     private $table = "Canciones";
 
@@ -35,10 +34,10 @@ class Canciones {
 
         // Ejecutar la consulta
         if ($stmt->execute()) {
-            return true;
+            return $this->db->lastInsertId();
         }
 
-        return false;
+        return null;
     }
 
     // Obtener todos las canciones
@@ -94,27 +93,23 @@ class Canciones {
     }
 
     // Eliminar un canciones
-    public function eliminarCanciones() {
-        $query = "DELETE FROM " . $this->table . " WHERE id = :id";
-
-        $stmt = $this->db->prepare($query);
-
-        $this->id = htmlspecialchars(strip_tags($this->id));
-
-        $stmt->bindParam(':id', $this->id);
-
-        if ($stmt->execute()) {
-            return true;
+    public function eliminarSiNoTieneLista($cancionId) {
+        // Verificar si la canción está en alguna lista
+        $sql = "SELECT COUNT(*) as total FROM ListaCancion WHERE id_cancion = :cancionId";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':cancionId', $cancionId, PDO::PARAM_INT);
+        $stmt->execute();
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        if ($resultado['total'] == 0) {
+            // Si no está en ninguna lista, eliminar la canción
+            $sqlEliminar = "DELETE FROM Canciones WHERE id = :cancionId";
+            $stmtEliminar = $this->db->prepare($sqlEliminar);
+            $stmtEliminar->bindParam(':cancionId', $cancionId, PDO::PARAM_INT);
+            return $stmtEliminar->execute();
         }
-
-        return false;
+    
+        return false; // No se elimina porque aún pertenece a una lista
     }
+    
 }
-
-
-
-    
-
-   
-        
-    

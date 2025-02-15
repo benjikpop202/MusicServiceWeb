@@ -1,26 +1,32 @@
 <?php
 include_once(__DIR__ . '/../Model/CancionModel.php');
+include_once(__DIR__ . '/../controllers/CancionListaController.php');
 
 class CancionesController {
     private $db;
     private $cancion;
+    private $cancionLista;
 
     public function __construct($db) {
         $this->db = $db;
         $this->cancion = new Canciones($db);
+        $this->cancionLista = new CancionListaController($db);
     }
 
     // Método para crear una nueva canción
     public function crearCancion() {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Verificar que los campos existan en el POST antes de asignarlos
+            $lista_id = isset($_POST['lista_id']) ? $_POST['lista_id'] : '';
             $this->cancion->nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
             $this->cancion->artista = isset($_POST['artista']) ? $_POST['artista'] : '';
             $this->cancion->genero = isset($_POST['genero']) ? $_POST['genero'] : '';
     
             // Verifica que todos los campos requeridos tengan valores
             if (!empty($this->cancion->nombre) && !empty($this->cancion->artista) && !empty($this->cancion->genero)) {
-                if ($this->cancion->crearCanciones()) {
+                $newCancion = $this->cancion->crearCanciones();
+                if ($newCancion) {
+                    $this->cancionLista->agregarCancionALista($newCancion, $lista_id);
                     echo "Canción creada con éxito.";
                 } else {
                     echo "Error al crear la canción.";
@@ -90,7 +96,7 @@ class CancionesController {
     public function eliminarCancion($id) {
         $this->cancion->id = $id;
 
-        if ($this->cancion->eliminarCanciones()) {
+        if ($this->cancion->eliminarSiNoTieneLista($id)) {
             echo "Canción eliminada con éxito.";
         } else {
             echo "Error al eliminar la canción.";

@@ -11,7 +11,7 @@ $db = $database->getDb();
 
 // Instanciar controladores
 $listaController = new ListaController($db);
-$cancionListaController = new CancionListaController($db);
+
 
 // Obtener la acción desde la URL
 $action = isset($_GET['action']) ? $_GET['action'] : '';
