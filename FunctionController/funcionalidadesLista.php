@@ -25,9 +25,6 @@ if ($action) {
         case 'crearLista':
             $listaController->crearLista();
             exit();
-        case 'crearCancion':
-            $cancionListaController->agregarCancionALista();
-            exit();
         case 'obtenerCanciones':
             if (!isset($_GET['lista_id'])) {
                 die("Falta el ID de la lista");

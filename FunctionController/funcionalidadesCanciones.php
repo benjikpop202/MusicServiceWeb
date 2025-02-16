@@ -16,11 +16,14 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 // Gestionar las rutas de acciones de canciones
 switch ($action) {
     // Obtener una canción por ID
+    case 'crearCancion':
+        $cancionController->crearCancion();
+        exit();
     case 'obtenerCancionPorId':
         $id = isset($_GET['id']) ? $_GET['id'] : die("Falta el ID de la canción");
         $cancionController->obtenerCancionPorId($id);
         break;
-
+    
     // Actualizar una canción
     case 'actualizarCancion':
         $cancionController->actualizarCancion(); // Este método maneja la lógica de actualización
@@ -30,10 +33,6 @@ switch ($action) {
     case 'eliminarCancion':
         $id = isset($_GET['id']) ? $_GET['id'] : die("Falta el ID de la canción");
         $cancionController->eliminarCancion($id);
-        break;
-
-    default:
-        echo "Acción no reconocida.";
         break;
 }
 ?>

@@ -151,7 +151,7 @@ async function agregarCancion(event) {
     formData.append("lista_id", listaId);
 
     try {
-        const response = await fetch("http://localhost:8000/index.php?action=agregarCancion", {
+        const response = await fetch("http://localhost:8000/index.php?action=crearCancion", {
             method: "POST",
             body: formData
         });

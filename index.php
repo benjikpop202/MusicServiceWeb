@@ -3,6 +3,7 @@ require_once('libs/Smarty.class.php');
 require_once 'controllers/ListasController.php';
 include_once('./FunctionController/funcionalidadesUser.php');
 include_once('./FunctionController/funcionalidadesLista.php');
+include_once('./FunctionController/funcionalidadesCanciones.php');
 
 // Configuración de Smarty
 $smarty = new Smarty\Smarty;
