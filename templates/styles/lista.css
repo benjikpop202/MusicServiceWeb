@@ -17,6 +17,38 @@ body {
     height: 100%;
 }
 
+
+.cancion{
+    width: 350px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    background: linear-gradient(45deg, blueviolet, violet);
+    color: #f4f4f4;
+    border-radius: 50px;
+    margin: 20px;
+    border: none;
+    transition: 0.3s;
+}
+
+.cancion:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.cancion span{
+    background: black;
+    color: #f4f4f4;
+    padding: 5px 5px;
+    border-radius: 100%;
+    margin-left: 5px;
+}
+
+.cancion p{
+  margin-left: 30px;
+  font-size: 1rem;
+}
+
 /* Contenedor del título */
 .title-container {
     position: absolute;
@@ -90,7 +122,7 @@ h1 {
     color: #fff;
 }
 
-#overlay {
+.overlay {
     display: none;
     position: fixed;
     top: 0;
@@ -100,6 +132,7 @@ h1 {
     background: rgba(0, 0, 0, 0.5); /* Fondo oscuro translúcido */
     justify-content: center;
     align-items: center;
+    z-index: 1;
 }
 
 /* Contenedor del formulario dentro del overlay */
@@ -214,7 +247,37 @@ body pre {
     background-color: #da190b;
 }
 
+#listaCanciones{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 
+#btn-section{
+    margin-top: 30%;
+    width: 30%;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    top: 80%;
+    left: 20%;
+}
+
+#btn-section button{
+    display: none;
+    font-size: 1.3rem;
+    font-weight: lighter;
+    background: #f4f4f4;
+    padding: 5px 10px;
+    border: none;
+    color: gray;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#btn-section button:hover{
+    color: #333;
+}
 
 
 
