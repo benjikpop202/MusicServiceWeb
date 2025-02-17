@@ -14,10 +14,11 @@
     }
 
     // Crear una nueva cancion
-    public function crearCanciones() {
-        $query = "INSERT INTO " . $this->table . " (nombre, artista, genero) 
-                  VALUES (:nombre, :artista, :genero)";
+public function crearCanciones() {
+    $query = "INSERT INTO " . $this->table . " (nombre, artista, genero) 
+              VALUES (:nombre, :artista, :genero)";
 
+    try {
         $stmt = $this->db->prepare($query);
 
         // Limpiar los datos
@@ -25,20 +26,30 @@
         $this->artista = htmlspecialchars(strip_tags($this->artista));
         $this->genero = htmlspecialchars(strip_tags($this->genero));
         
-
-        // Enlazar los parámetros
-        $stmt->bindParam(':nombre', $this->nombre);
-        $stmt->bindParam(':artista', $this->artista);
-        $stmt->bindParam(':genero', $this->genero);
-       
+        // Enlazar los parámetros con especificación de tipo
+        $stmt->bindParam(':nombre', $this->nombre, PDO::PARAM_STR);
+        $stmt->bindParam(':artista', $this->artista, PDO::PARAM_STR);
+        $stmt->bindParam(':genero', $this->genero, PDO::PARAM_STR);
 
         // Ejecutar la consulta
         if ($stmt->execute()) {
-            return $this->db->lastInsertId();
+            $lastInsertId = $this->db->lastInsertId();
+            
+            // Verificar si se generó un ID válido
+            if (!empty($lastInsertId)) {
+                return $lastInsertId;
+            }
         }
-
+        
+        return null; // Retorna null si no se insertó correctamente
+        
+    } catch (PDOException $e) {
+        // Mostrar error detallado (solo para desarrollo, quítalo en producción)
+        echo "Error al crear canción: " . $e->getMessage();
         return null;
     }
+}
+
 
     // Obtener todos las canciones
     public function obtenerCanciones() {
