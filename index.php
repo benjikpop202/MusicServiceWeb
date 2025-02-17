@@ -24,38 +24,6 @@ $db = $database->getDb();
 $request = $_SERVER['REQUEST_URI'];
 
 
-// Verificar si se está agregando una canción
-/*if (isset($_GET['action']) && $_GET['action'] == 'agregar_cancion' && isset($_GET['lista_id'])) {
-    // Obtener datos enviados por POST
-    $nombre = $_POST['nombre'];
-    $artista = $_POST['artista'];
-    $genero = $_POST['genero'];
-    $lista_id = $_GET['lista_id'];
-
-    // Verificar que los campos no estén vacíos
-    if (!empty($nombre) && !empty($artista) && !empty($genero) && !empty($lista_id)) {
-        // Preparar la consulta para insertar la canción
-        $conexion = Conexion::getInstance()->getConexion();
-        $sql = "INSERT INTO Canciones (nombre, artista, genero, lista_id) VALUES (:nombre, :artista, :genero, :lista_id)";
-        $stmt = $conexion->prepare($sql);
-        $stmt->bindParam(':nombre', $nombre);
-        $stmt->bindParam(':artista', $artista);
-        $stmt->bindParam(':genero', $genero);
-        $stmt->bindParam(':lista_id', $lista_id);
-
-        // Ejecutar la consulta y verificar si se insertó correctamente
-        if ($stmt->execute()) {
-            header("Location: index.php?action=ver_lista&lista_id=$lista_id");
-            exit();
-        } else {
-            echo "Hubo un error al agregar la canción.";
-        }
-    } else {
-        echo "Por favor, completa todos los campos.";
-    }
-}*/
-
-
 // Ruta para la página principal del usuario
 if (preg_match('/^\/home\/(\d+)$/', $request, $matches)) {
     $userId = $matches[1];
@@ -124,7 +92,7 @@ if (preg_match('/^\/home\/(\d+)\/lista\/(\d+)$/', $request, $matches)) {
     $stmt3 = $db->prepare($query3);
     $stmt3->bindParam('lista_id', $listaId);
     $stmt3->execute();
-    $canciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $canciones = $stmt3->fetchAll(PDO::FETCH_ASSOC);
 
 
     if ($lista && $user) {
@@ -241,63 +209,5 @@ switch ($request) {
         break;
     case (preg_match('/^\/canciones\//', $request) ? true : false):
         include_once(__DIR__ . '/FunctionController/funcionalidadesCanciones.php');
-        break;
-   /* case (preg_match('/^\/home\/(\d+)\/lista\/(\d+)\/agregarCancion$/', $request, $matches) ? true : false):
-        $userId = $matches[1];
-        $listaId = $matches[2];
-
-        // Verificar que la lista pertenece al usuario
-        $query = "SELECT * FROM listas WHERE id = :listaId AND usuario_id = :userId";
-        $stmt = $db->prepare($query);
-        $stmt->bindParam(':listaId', $listaId);
-        $stmt->bindParam(':userId', $userId);
-        $stmt->execute();
-        $lista = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($lista) {
-            // Verificar si se ha enviado el formulario para agregar una canción
-            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cancion_id'])) {
-                $cancionId = $_POST['cancion_id'];
-
-                // Insertar la canción en la lista
-                $queryInsert = "INSERT INTO CancionLista (lista_id, cancion_id) VALUES (:listaId, :cancionId)";
-                $stmtInsert = $db->prepare($queryInsert);
-                $stmtInsert->bindParam(':listaId', $listaId);
-                $stmtInsert->bindParam(':cancionId', $cancionId);
-                $stmtInsert->execute();
-
-                // Asegúrate de que no hay salida extra antes de esto
-                echo json_encode(['success' => true, 'message' => 'Canción agregada con éxito']);
-                exit();  // Termina la ejecución del script
-            } else {
-                // Si no se ha enviado el formulario correctamente, responder con un error
-                echo json_encode(['success' => false, 'message' => 'Error al procesar la solicitud']);
-                exit();
-            }
-
-            // Obtener todas las canciones disponibles para seleccionar
-            $queryCanciones = "SELECT * FROM canciones";
-            $stmtCanciones = $db->prepare($queryCanciones);
-            $stmtCanciones->execute();
-            $canciones = $stmtCanciones->fetchAll(PDO::FETCH_ASSOC);
-
-            // Obtener las canciones ya agregadas a la lista
-            $queryListaCanciones = "
-                SELECT c.* 
-                FROM canciones c
-                INNER JOIN CancionLista cl ON c.id = cl.cancion_id
-                WHERE cl.lista_id = :listaId
-            ";
-            $stmtListaCanciones = $db->prepare($queryListaCanciones);
-            $stmtListaCanciones->bindParam(':listaId', $listaId);
-            $stmtListaCanciones->execute();
-            $listaCanciones = $stmtListaCanciones->fetchAll(PDO::FETCH_ASSOC);
-
-            // Pasar los datos a la plantilla Smarty
-            $smarty->assign('lista', $lista);
-            $smarty->assign('canciones', $canciones);
-            $smarty->assign('listaCanciones', $listaCanciones);
-            $smarty->display('lista.tpl');
-        }*/ 
         break;
 }
