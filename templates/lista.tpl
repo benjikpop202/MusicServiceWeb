@@ -5,6 +5,7 @@
     <title>{$lista.nombre} - Music Service</title>
     <link rel="stylesheet" href="/templates/styles/principal.css"/>
     <link rel="stylesheet" href="/templates/styles/lista.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
    
@@ -22,28 +23,27 @@
     </form>
 </div>
 
-<!-- Lista de canciones -->
-<div id="listaCanciones">
-    <h2>Listado de Canciones</h2>
-    <ul id="canciones">
-        <!-- Aquí se irán agregando las canciones -->
-    </ul>
-</div>
 
         <div class="title-container">
             <h1 id="nombreLista">Canciones {$lista.nombre}</h1>
-            {if isset($canciones) && $canciones|@count > 0}
-            <div class="content">
+            <div id="listaCanciones">
+                <h2>Listado de Canciones</h2>
+                {if isset($canciones) && $canciones|@count > 0}
             {foreach from=$canciones item=cancion}
-                <div class="cancion" >
+                <button class="cancion" >
+                    <span class="material-symbols-outlined">music_note</span>
                     <p>{$cancion.nombre}</p>
-                </div>
+                </button>
             {/foreach}
+            <div id="btn-section">
+                <button id="anterior"> < Anterior </button>
+                <button id="siguiente"> Siguiente > </button>
+            </div>
             </div>
           {else}
              <p>Sin canciones</p>
           {/if}
-        </div>
+            </div>
         <div class="content">
             <div class="sidebar">
                 <button class="action-button edit-button" id="update-btn">Editar lista</button>
@@ -74,9 +74,8 @@
             <button onclick="document.getElementById('overlay').style.display='none'">Cancelar</button>
         </div>
     </div>
-
     <script src="/templates/scripts/lista.js"></script>
-    
+    <script src="/templates/scripts/paginacionCancion.js"></script>
 </body>
 </html>  
 
