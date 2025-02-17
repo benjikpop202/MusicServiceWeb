@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
     // Mostrar el formulario para editar lista
     document.getElementById("update-btn").addEventListener("click", () => {
@@ -129,7 +128,6 @@ Publicar.addEventListener("click", async () => {
         alert("Hubo un error al actualizar la lista.");
     }
 });
-
 // Función para agregar canción
 async function agregarCancion(event) {
     event.preventDefault();
@@ -151,12 +149,13 @@ async function agregarCancion(event) {
     formData.append("lista_id", listaId);
 
     try {
-        const response = await fetch("http://localhost:8000/index.php?action=crearCancion", {
+        const response = await fetch("http://localhost:8000/index.php?action=agregarCancion", {
             method: "POST",
             body: formData
         });
 
-        const data = await response.json();
+        const data = await response.text();
+        console.log(data);
 
         if (data.error) {
             alert(data.error);
@@ -181,29 +180,22 @@ async function agregarCancion(event) {
 // Función para recargar la lista de canciones
 async function recargarCanciones() {
     const listaId = document.getElementById("agregarCancionBtn").getAttribute("data-lista-id");
+    console.log("ID de la lista:", listaId);
 
     try {
-        const response = await fetch(`http://localhost:8000/index.php?action=obtenerCanciones&lista_id=${listaId}`);
-        const canciones = await response.json();
+        const response = await fetch(`index.php?action=obtenerCanciones&lista_id=${listaId}`);
 
-        const cancionesUl = document.getElementById("canciones");
-        cancionesUl.innerHTML = "";
 
-        canciones.forEach(cancion => {
-            const li = document.createElement("li");
-            li.textContent = `${cancion.nombre} - ${cancion.artista} (${cancion.genero})`;
-            cancionesUl.appendChild(li);
-        });
+        if (!response.ok) {
+            throw new Error('Error en la respuesta del servidor');
+        }
+
+        const data = await response.json();
+        console.log('Datos obtenidos:', data); // Verifica los datos obtenidos
+
+        // Aquí deberías actualizar la vista con las canciones
     } catch (error) {
-        console.error("Error al recargar las canciones:", error);
-        alert("Hubo un error al recargar las canciones.");
+        console.error('Error al recargar canciones:', error);
+        alert('Hubo un error al recargar las canciones.');
     }
 }
-
-
-
-
-
-
-
-

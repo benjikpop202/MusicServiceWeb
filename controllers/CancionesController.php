@@ -13,29 +13,52 @@ class CancionesController {
         $this->cancionLista = new CancionListaController($db);
     }
 
-    // Método para crear una nueva canción
+
+
     public function crearCancion() {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Verificar que los campos existan en el POST antes de asignarlos
-            $lista_id = isset($_POST['lista_id']) ? $_POST['lista_id'] : '';
-            $this->cancion->nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
-            $this->cancion->artista = isset($_POST['artista']) ? $_POST['artista'] : '';
-            $this->cancion->genero = isset($_POST['genero']) ? $_POST['genero'] : '';
+        header('Content-Type: application/json');
     
-            // Verifica que todos los campos requeridos tengan valores
-            if (!empty($this->cancion->nombre) && !empty($this->cancion->artista) && !empty($this->cancion->genero)) {
-                $newCancion = $this->cancion->crearCanciones();
-                if ($newCancion) {
-                    $this->cancionLista->agregarCancionALista($newCancion, $lista_id);
-                    echo "Canción creada con éxito.";
-                } else {
-                    echo "Error al crear la canción.";
-                }
-            } else {
-                echo "Por favor, rellena todos los campos obligatorios.";
+        // Verificar el método de solicitud
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Obtener datos del formulario
+            $lista_id = isset($_POST['lista_id']) ? $_POST['lista_id'] : '';
+            $this->cancion->nombre = isset($_POST['nombre']) ? trim($_POST['nombre']) : '';
+            $this->cancion->artista = isset($_POST['artista']) ? trim($_POST['artista']) : '';
+            $this->cancion->genero = isset($_POST['genero']) ? trim($_POST['genero']) : '';
+    
+            // Validar que todos los campos estén presentes
+            if (empty($this->cancion->nombre) || empty($this->cancion->artista) || empty($this->cancion->genero)) {
+                echo json_encode(["error" => "Todos los campos son obligatorios."]);
+                return;
             }
+    
+            // Validar que el ID de la lista no esté vacío
+            if (empty($lista_id)) {
+                echo json_encode(["error" => "El ID de la lista es obligatorio."]);
+                return;
+            }
+    
+            // Crear la canción
+            $newCancion = $this->cancion->crearCanciones();
+            if ($newCancion === false) {
+                echo json_encode(["error" => "Error al crear la canción en la base de datos."]);
+                return;
+            }
+    
+            // Agregar la canción a la lista
+            $agregada = $this->cancionLista->agregarCancionALista($newCancion, $lista_id);
+            if (!$agregada) {
+                echo json_encode(["error" => "Error al agregar la canción a la lista."]);
+                return;
+            }
+    
+            // Respuesta exitosa
+            echo json_encode(["success" => "Canción creada y agregada a la lista con éxito."]);
+        } else {
+            echo json_encode(["error" => "Método no permitido."]);
         }
     }
+    
 
     // Método para obtener todas las canciones
     public function obtenerCanciones() {
@@ -103,4 +126,5 @@ class CancionesController {
         }
     }
 }
-?>
+?>   
+
