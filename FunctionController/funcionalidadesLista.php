@@ -49,8 +49,7 @@ if ($action) {
             $id = $_GET['id'];
             $listaController->eliminarLista($id);
             exit();
-        default:
-            die("Acción no reconocida");
+        
     }
 }
 ?>
