@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Canciones</title>
     <!-- Importa el archivo de estilos -->
-    <link rel="stylesheet" href="css/canciones.css">
+    <link rel="stylesheet" href="/templates/styles/canciones.css">
 </head>
 <body>
 
@@ -56,6 +56,6 @@
     </div>
 
     <!-- Importa el archivo de JavaScript separado -->
-    <script src="js/cancion.js"></script>
+    <script src="/templates/scripts/cancion.js"></script>
 </body>
 </html>

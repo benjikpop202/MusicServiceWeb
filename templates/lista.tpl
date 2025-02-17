@@ -30,7 +30,7 @@
                 <h2>Listado de Canciones</h2>
                 {if isset($canciones) && $canciones|@count > 0}
             {foreach from=$canciones item=cancion}
-                <button class="cancion" >
+                <button class="cancion" onclick="window.location.href='/home/{$usuario.id}/lista/{$lista.id}/cancion/{$cancion.id}'">
                     <span class="material-symbols-outlined">music_note</span>
                     <p>{$cancion.nombre}</p>
                 </button>
