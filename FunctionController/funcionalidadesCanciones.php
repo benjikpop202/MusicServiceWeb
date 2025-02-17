@@ -14,7 +14,7 @@ $cancionController = new CancionesController($db);
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 
 // Gestionar las rutas de acciones de canciones
-if($action){
+if (isset($_GET['action'])) {
     switch ($action) {
         // Obtener una canción por ID
         case 'crearCancion':
@@ -36,6 +36,6 @@ if($action){
             $cancionController->eliminarCancion($id);
             break;
     }
-}
 
+}
 ?>

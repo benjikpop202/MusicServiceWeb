@@ -25,7 +25,7 @@ $request = $_SERVER['REQUEST_URI'];
 
 
 // Verificar si se está agregando una canción
-if (isset($_GET['action']) && $_GET['action'] == 'agregar_cancion' && isset($_GET['lista_id'])) {
+/*if (isset($_GET['action']) && $_GET['action'] == 'agregar_cancion' && isset($_GET['lista_id'])) {
     // Obtener datos enviados por POST
     $nombre = $_POST['nombre'];
     $artista = $_POST['artista'];
@@ -53,7 +53,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'agregar_cancion' && isset($_GE
     } else {
         echo "Por favor, completa todos los campos.";
     }
-}
+}*/
 
 
 // Ruta para la página principal del usuario
@@ -117,10 +117,21 @@ if (preg_match('/^\/home\/(\d+)\/lista\/(\d+)$/', $request, $matches)) {
     $stmt2->execute();
     $user = $stmt2->fetch(PDO::FETCH_ASSOC);
 
+    $query3 = "SELECT c.id, c.nombre, c.artista, c.genero 
+            FROM Canciones c
+            JOIN CancionLista cl ON c.id = cl.cancion_id
+            WHERE cl.lista_id = :lista_id";
+    $stmt3 = $db->prepare($query3);
+    $stmt3->bindParam('lista_id', $listaId);
+    $stmt3->execute();
+    $canciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
     if ($lista && $user) {
         // Pasar los datos de la lista a la plantilla Smarty
         $smarty->assign('usuario', $user);
         $smarty->assign('lista', $lista);
+        $smarty->assign('canciones', $canciones);
         $smarty->display('lista.tpl');
     } else {
         http_response_code(404);
@@ -228,7 +239,10 @@ switch ($request) {
     case (preg_match('/^\/listas\//', $request) ? true : false):
         include_once(__DIR__ . '/FunctionController/funcionalidadesLista.php');
         break;
-    case (preg_match('/^\/home\/(\d+)\/lista\/(\d+)\/agregarCancion$/', $request, $matches) ? true : false):
+    case (preg_match('/^\/canciones\//', $request) ? true : false):
+        include_once(__DIR__ . '/FunctionController/funcionalidadesCanciones.php');
+        break;
+   /* case (preg_match('/^\/home\/(\d+)\/lista\/(\d+)\/agregarCancion$/', $request, $matches) ? true : false):
         $userId = $matches[1];
         $listaId = $matches[2];
 
@@ -284,9 +298,6 @@ switch ($request) {
             $smarty->assign('canciones', $canciones);
             $smarty->assign('listaCanciones', $listaCanciones);
             $smarty->display('lista.tpl');
-        } else {
-            http_response_code(404);
-            echo "Lista no encontrada.";
-        }
+        }*/ 
         break;
 }

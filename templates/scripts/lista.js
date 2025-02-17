@@ -149,7 +149,7 @@ async function agregarCancion(event) {
     formData.append("lista_id", listaId);
 
     try {
-        const response = await fetch("http://localhost:8000/index.php?action=agregarCancion", {
+        const response = await fetch("http://localhost:8000/index.php?action=crearCancion", {
             method: "POST",
             body: formData
         });
@@ -169,7 +169,7 @@ async function agregarCancion(event) {
             document.getElementById("overlay-cancion").style.display = "none";
 
             // Recargar la lista de canciones
-            recargarCanciones();
+            location.reload();
         }
     } catch (error) {
         console.error("Error al agregar la canción:", error);
@@ -177,25 +177,3 @@ async function agregarCancion(event) {
     }
 }
 
-// Función para recargar la lista de canciones
-async function recargarCanciones() {
-    const listaId = document.getElementById("agregarCancionBtn").getAttribute("data-lista-id");
-    console.log("ID de la lista:", listaId);
-
-    try {
-        const response = await fetch(`index.php?action=obtenerCanciones&lista_id=${listaId}`);
-
-
-        if (!response.ok) {
-            throw new Error('Error en la respuesta del servidor');
-        }
-
-        const data = await response.json();
-        console.log('Datos obtenidos:', data); // Verifica los datos obtenidos
-
-        // Aquí deberías actualizar la vista con las canciones
-    } catch (error) {
-        console.error('Error al recargar canciones:', error);
-        alert('Hubo un error al recargar las canciones.');
-    }
-}

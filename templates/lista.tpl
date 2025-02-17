@@ -32,6 +32,18 @@
 
         <div class="title-container">
             <h1 id="nombreLista">Canciones {$lista.nombre}</h1>
+            {if isset($canciones) && $canciones|@count > 0}
+            <div class="content">
+            {foreach from=$listas item=lista}
+                <div class="cancion" >
+                    <span class="material-symbols-outlined">music_note</span>
+                    <p>{$cancion.nombre}</p>
+                </div>
+            {/foreach}
+            </div>
+          {else}
+             <p>Sin canciones</p>
+          {/if}
         </div>
         <div class="content">
             <div class="sidebar">
