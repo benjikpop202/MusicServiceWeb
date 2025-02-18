@@ -102,12 +102,12 @@ class CancionesController {
                 // Verifica que todos los campos requeridos tengan valores
                 if (!empty($this->cancion->nombre) && !empty($this->cancion->artista) && !empty($this->cancion->genero)) {
                     if ($this->cancion->actualizarCanciones()) {
-                        echo "Canción actualizada con éxito.";
+                        echo json_encode(["mensaje" => "Canción actualizada con éxito."]);
                     } else {
-                        echo "Error al actualizar la canción.";
+                        echo json_encode(["error" => "Error al actualizar la canción."]);
                     }
                 } else {
-                    echo "Por favor, rellena todos los campos obligatorios.";
+                    echo json_encode(["error" => "Por favor, rellena todos los campos obligatorios."]);
                 }
             } else {
                 echo "Falta el ID de la canción.";

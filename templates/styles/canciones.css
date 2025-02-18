@@ -1,6 +1,6 @@
 /* Estilos generales */
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: Arial, sans-serif;
     background-color: #f9f9f9;
     color: #333;
     text-align: center;
@@ -19,35 +19,8 @@ h1 {
     animation: gradient-animation 6s infinite;
 }
 
-/* Tabla */
-table {
-    width: 80%;
-    margin: 20px auto;
-    border-collapse: collapse;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-table, th, td {
-    border: none;
-}
-
-th {
-    background-color: #4a00e0;
-    color: white;
-    padding: 15px;
-}
-
-td {
-    background-color: #fff;
-    color: #555;
-    padding: 15px;
-    border-bottom: 1px solid #eee;
-}
-
-tr:last-child td {
-    border-bottom: none;
+#song-info{
+    font-size: 1.3rem;
 }
 
 /* Botones */
@@ -79,16 +52,62 @@ tr:last-child td {
 }
 
 /* Modal de actualización */
-.overlay {
+#overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
+    z-index: 1;
+}
+
+.overlay-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 350px;
+}
+
+/* Input del overlay */
+.overlay-content input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Botones del overlay */
+.overlay-content button {
+    padding: 10px 20px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.overlay-content button:first-of-type {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.overlay-content button:first-of-type:hover {
+    background-color: #45a049;
+}
+
+.overlay-content button:last-of-type {
+    background-color: #f44336;
+    color: white;
+}
+
+.overlay-content button:last-of-type:hover {
+    background-color: #da190b;
 }
 
 .form-actualizar {
