@@ -103,24 +103,5 @@ public function crearCanciones() {
         return false;
     }
 
-    // Eliminar un canciones
-    public function eliminarSiNoTieneLista($cancionId) {
-        // Verificar si la canción está en alguna lista
-        $sql = "SELECT COUNT(*) as total FROM ListaCancion WHERE id_cancion = :cancionId";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':cancionId', $cancionId, PDO::PARAM_INT);
-        $stmt->execute();
-        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-        if ($resultado['total'] == 0) {
-            // Si no está en ninguna lista, eliminar la canción
-            $sqlEliminar = "DELETE FROM Canciones WHERE id = :cancionId";
-            $stmtEliminar = $this->db->prepare($sqlEliminar);
-            $stmtEliminar->bindParam(':cancionId', $cancionId, PDO::PARAM_INT);
-            return $stmtEliminar->execute();
-        }
-    
-        return false; // No se elimina porque aún pertenece a una lista
-    }
     
 }

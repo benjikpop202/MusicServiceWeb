@@ -112,14 +112,19 @@ if (preg_match('/^\/home\/(\d+)\/lista\/(\d+)\/cancion\/(\d+)$/', $request, $mat
     $userId = $matches[1];
     $listaId = $matches[2];
     $cancionId = $matches[3];
-
-    // Verificar que la lista pertenece al usuario
-    $query = "SELECT * FROM listas WHERE id = :listaId AND usuario_id = :userId";
+    
+    $query = "SELECT * FROM usuarios WHERE id = :id";
     $stmt = $db->prepare($query);
-    $stmt->bindParam(':listaId', $listaId);
-    $stmt->bindParam(':userId', $userId);
+    $stmt->bindParam(':id', $userId);
     $stmt->execute();
-    $lista = $stmt->fetch(PDO::FETCH_ASSOC);
+    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Verificar que la lista pertenece al usuario
+    $query2 = "SELECT * FROM listas WHERE id = :listaId AND usuario_id = :userId";
+    $stmt2 = $db->prepare($query2);
+    $stmt2->bindParam(':listaId', $listaId);
+    $stmt2->bindParam(':userId', $userId);
+    $stmt2->execute();
+    $lista = $stmt2->fetch(PDO::FETCH_ASSOC);
 
     if ($lista) {
         // Obtener la canción específica
@@ -134,6 +139,7 @@ if (preg_match('/^\/home\/(\d+)\/lista\/(\d+)\/cancion\/(\d+)$/', $request, $mat
 
         if ($cancion) {
             // Pasar la canción a la plantilla Smarty
+            $smarty->assign('usuario', $usuario);
             $smarty->assign('lista', $lista);
             $smarty->assign('cancion', $cancion);
             $smarty->display('cancion.tpl');

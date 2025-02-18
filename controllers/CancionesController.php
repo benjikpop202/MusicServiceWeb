@@ -115,16 +115,6 @@ class CancionesController {
         }
     }
 
-    // Método para eliminar una canción
-    public function eliminarCancion($id) {
-        $this->cancion->id = $id;
-
-        if ($this->cancion->eliminarSiNoTieneLista($id)) {
-            echo "Canción eliminada con éxito.";
-        } else {
-            echo "Error al eliminar la canción.";
-        }
-    }
 }
 ?>   
 

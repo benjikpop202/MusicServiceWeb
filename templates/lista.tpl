@@ -44,6 +44,7 @@
              <p>Sin canciones</p>
           {/if}
             </div>
+        </div>
         <div class="content">
             <div class="sidebar">
                 <button class="action-button edit-button" id="update-btn">Editar lista</button>

@@ -7,6 +7,7 @@ document.getElementById('btnCancelar').addEventListener("click", () =>{
 })
 
 document.getElementById("updateCancion").addEventListener("click", ActualizarCancion);
+document.getElementById("delete-btn").addEventListener("click", eliminarCancion)
 // Obtener el formulario de actualización de canción
 
 async function ActualizarCancion(){
@@ -45,29 +46,32 @@ async function ActualizarCancion(){
 };
 
 // Obtener el formulario de eliminación de canción
-const FormDelete = document.getElementById("deleteForm");
-FormDelete.addEventListener('submit', async (e) => {
-    e.preventDefault(); 
-    const id = document.getElementById("cancion_id").value;
+async function eliminarCancion(){
+
+ 
+ let userId = document.getElementById("userId").value
+ let cancionId = document.getElementById("cancionId").value
+ let listaId = document.getElementById("listaId").value
+
+ if (!confirm("¿Estás seguro de que deseas eliminar esta lista?")) return;
+
     try {
-        const response = await fetch(`http://localhost:8000/index.php?action=eliminarCancion&id=${id}`, {
+        const response = await fetch(`http://localhost:8000/index.php?action=eliminarCancion&idCancion=${cancionId}&idLista=${listaId}`, {
             method: 'DELETE',
-            headers: {
-                "Accept": "application/json", // Asegura que el backend devuelva JSON
-            },
         });
 
-        const data = await response.json();
+        const data = await response.text();
 
         if (data.error) {
             alert(data.error); // Mostrar mensaje de error
         } else {
-            alert(data.mensaje); // Mostrar mensaje de éxito
-            location.reload();
+            alert("cancion eliminada exitosamente"); // Mostrar mensaje de éxito
+            window.location.replace(`/home/${userId}/lista/${listaId}`);
         }
     } catch (error) {
         console.error("Error en la solicitud:", error);
         alert("Hubo un error al eliminar la canción.");
     }
-});
+}
+
 

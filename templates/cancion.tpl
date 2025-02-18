@@ -37,12 +37,12 @@
                 <button type="button" id="btnCancelar">Cancelar</button>
                 </div>
             </div>
-            <form id="deleteForm" onsubmit="return confirm('¿Estás seguro de eliminar esta canción?')" method="post" action="eliminar_cancion.php">
-                <input type="hidden" name="id" value="{$cancion.id}">
-                <button type="submit" id="delete-btn" style="background-color: #F44336; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
-                    Eliminar Canción
+              <button type="submit" id="delete-btn" style="background-color: #F44336; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+                <input type="hidden" id="userId" value="{$usuario.id}">
+                <input type="hidden" id="cancionId" value="{$cancion.id}">
+                <input type="hidden" id="listaId" value="{$lista.id}">
+                Eliminar Canción
                 </button>
-            </form>
         </div>
     </main>
 
