@@ -3,59 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Canciones</title>
-    <!-- Importa el archivo de estilos -->
-    <link rel="stylesheet" href="/templates/styles/canciones.css">
+    <title>Detalles de la Canción</title>
+    <link rel="stylesheet" href="{$base_url}/templates/styles/cancion.css">
 </head>
 <body>
+    <header>
+        <h1 style="text-align: center; font-size: 2em; color: purple; text-shadow: 2px 2px 4px #ccc;">
+            Detalles de la Canción
+        </h1>
+    </header>
+    <main id="song-container" style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+        <section id="song-info" style="background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 20px; width: 80%; max-width: 400px;">
+            <h2 style="text-align: center;">Información de la Canción</h2>
+            <p><strong>Nombre:</strong> {$cancion.nombre}</p>
+            <p><strong>Artista:</strong> {$cancion.artista}</p>
+            <p><strong>Género:</strong> {$cancion.genero}</p>
+        </section>
+        <div id="action-buttons" style="display: flex; gap: 20px;">
+            <button id="update-btn" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+                Actualizar Datos
+            </button>
+            <form id="deleteForm" onsubmit="return confirm('¿Estás seguro de eliminar esta canción?')" method="post" action="eliminar_cancion.php">
+                <input type="hidden" name="id" value="{$cancion.id}">
+                <button type="submit" id="delete-btn" style="background-color: #F44336; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+                    Eliminar Canción
+                </button>
+            </form>
+        </div>
+    </main>
 
-    <h1>Lista de Canciones</h1>
-
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Título</th>
-                <th>Artista</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            {foreach from=$canciones item=cancion}
-            <tr>
-                <td>{$cancion.id}</td>
-                <td>{$cancion.titulo}</td>
-                <td>{$cancion.artista}</td>
-                <td>
-                    <!-- Botón para actualizar -->
-                    <button class="update-btn" data-id="{$cancion.id}" data-titulo="{$cancion.titulo}" data-artista="{$cancion.artista}">Actualizar</button>
-                    
-                    <!-- Formulario para eliminar -->
-                    <form class="deleteForm" method="post">
-                        <input type="hidden" name="id" value="{$cancion.id}">
-                        <button type="submit" class="delete-btn">Eliminar</button>
-                    </form>
-                </td>
-            </tr>
-            {/foreach}
-        </tbody>
-    </table>
-
-    <!-- Overlay para actualizar canción -->
-    <div id="overlay" class="overlay" style="display:none;">
-        <form id="actualizar" method="post" class="form-actualizar">
-            <h2>Actualizar Canción</h2>
-            <input type="hidden" name="id" id="idActualizar">
-            <label for="titulo">Título:</label>
-            <input type="text" name="titulo" id="tituloActualizar" required>
-            <label for="artista">Artista:</label>
-            <input type="text" name="artista" id="artistaActualizar" required>
-            <button type="submit" class="btn-guardar">Guardar Cambios</button>
-            <button type="button" class="btn-cancelar" onclick="document.getElementById('overlay').style.display='none';">Cancelar</button>
-        </form>
-    </div>
-
-    <!-- Importa el archivo de JavaScript separado -->
-    <script src="/templates/scripts/cancion.js"></script>
+    <script>
+        document.getElementById("update-btn").addEventListener("click", function() {
+            alert("Función de actualización en construcción.");
+        });
+    </script>
 </body>
 </html>
+

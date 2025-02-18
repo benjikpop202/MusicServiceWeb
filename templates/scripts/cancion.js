@@ -1,15 +1,15 @@
-// Muestra el overlay para actualizar la canción
+// Mostrar el formulario de actualización al hacer clic en el botón de actualizar
 document.getElementById('update-btn').addEventListener('click', () => {
     document.getElementById('overlay').style.display = 'flex';
 });
 
-// Maneja el envío del formulario de actualización
-const formActualizar = document.getElementById('actualizar');
-formActualizar.addEventListener('submit', async (e) => {
+// Obtener el formulario de actualización de canción
+const form = document.getElementById('actualizar-cancion');
+form.addEventListener('submit', async (e) => {
     e.preventDefault(); // Evita el envío tradicional del formulario
 
-    const formData = new FormData(formActualizar);
-    console.log("📤 Datos enviados para actualizar:", [...formData.entries()]);
+    const formData = new FormData(form);
+    console.log("📤 Datos enviados:", [...formData.entries()]);
 
     try {
         const response = await fetch('http://localhost:8000/index.php?action=actualizarCancion', {
@@ -26,16 +26,16 @@ formActualizar.addEventListener('submit', async (e) => {
             location.reload(); // Recargar la página solo si la actualización fue exitosa
         }
     } catch (error) {
-        console.error("Error en la solicitud de actualización:", error);
+        console.error("Error en la solicitud:", error);
         alert("Hubo un error al actualizar la canción.");
     }
 });
 
-// Maneja el envío del formulario de eliminación
-const formEliminar = document.getElementById("deleteForm");
-formEliminar.addEventListener('submit', async (e) => {
+// Obtener el formulario de eliminación de canción
+const FormDelete = document.getElementById("deleteForm");
+FormDelete.addEventListener('submit', async (e) => {
     e.preventDefault(); 
-    const id = document.getElementById("idCancion").value; // Asegúrate de que el input tenga el ID correcto
+    const id = document.getElementById("cancion_id").value;
     try {
         const response = await fetch(`http://localhost:8000/index.php?action=eliminarCancion&id=${id}`, {
             method: 'DELETE',
@@ -50,10 +50,11 @@ formEliminar.addEventListener('submit', async (e) => {
             alert(data.error); // Mostrar mensaje de error
         } else {
             alert(data.mensaje); // Mostrar mensaje de éxito
-            location.reload(); // Recargar la página para reflejar los cambios
+            location.reload();
         }
     } catch (error) {
-        console.error("Error en la solicitud de eliminación:", error);
+        console.error("Error en la solicitud:", error);
         alert("Hubo un error al eliminar la canción.");
     }
 });
+
