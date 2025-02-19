@@ -11,8 +11,8 @@ body {
     padding: 0;
 }
 
-/* Contenedor principal de la canción */
-#song-container {
+/* Estilo para el contenedor principal de la cuenta */
+#account-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,31 +20,42 @@ body {
     padding: 20px;
 }
 
-/* Tarjeta de información de la canción */
-#song-info {
-    background-color: #f3f4f6;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    width: 80%;
-    max-width: 600px;
-    margin-bottom: 30px;
-    text-align: center;
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
 }
 
-#song-info h2 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    color: #333;
+.subscripcion {
+    background-color: darkorange;
 }
 
-#song-info p {
-    font-size: 1.2rem;
-    color: #555;
-    margin: 10px 0;
+#actualizar{
+    background-color: #f4f4f4;
+    width: 400px;
+    height: 500px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:space-around;
+}
+
+#name{
+    width: 70%;
+    padding: 10px;
+    font-size: 1rem;
 }
 
 /* Título */
+
 header h1 {
     font-family: "Poppins", sans-serif;
     font-style: normal;
@@ -60,7 +71,7 @@ header h1 {
     animation: gradient-animation 6s infinite;
 }
 
-/* Animación del degradado */
+/* Animación del degradado para un efecto dinámico */
 @keyframes gradient-animation {
     0% {
         background-position: 0% 50%;
@@ -73,6 +84,32 @@ header h1 {
     }
 }
 
+
+
+/* Sección de datos del usuario */
+#user-info {
+    background-color: #f3f4f6; /* Un tono gris claro moderno */
+    padding: 30px; /* Más espacio interno para mayor elegancia */
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más suave */
+    width: 80%;
+    max-width: 600px;
+    margin-bottom: 30px; /* Más espacio hacia abajo */
+}
+
+#user-info h2 {
+    font-size: 1.8rem; 
+    margin-bottom: 20px;
+    color: #333; 
+}
+
+#user-info p {
+    font-size: 1.2rem; 
+    color: #555; 
+    margin: 10px 0; 
+}
+
+
 /* Botones de acciones */
 #action-buttons {
     display: flex;
@@ -83,12 +120,16 @@ header h1 {
 
 #action-buttons button {
     color: white;
-    padding: 15px 40px;
-    font-size: 1.5rem;
+    padding: 15px 40px; /* Tamaño más grande */
+    font-size: 1.5rem; /* Aumenta el tamaño del texto */
     border: none;
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+#submit{
+    background-color: lightgreen;
 }
 
 /* Botón de actualizar */
@@ -109,4 +150,11 @@ header h1 {
     background-color: #d32f2f;
 }
 
+/* Estilo de texto de advertencia para eliminar cuenta */
+#delete-warning {
+    color: #f44336;
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 1rem;
+}
 
