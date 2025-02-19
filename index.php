@@ -162,7 +162,19 @@ if (preg_match('/^\/plataforma\/(\d+)$/', $request, $matches)) {
     $stmt->bindParam(':listaId', $listaId);
     $stmt->execute();
     $lista = $stmt->fetch(PDO::FETCH_ASSOC);
+
     if ($lista) {
+         
+        $query2 = "SELECT c.id, c.nombre, c.artista, c.genero 
+            FROM Canciones c
+            JOIN CancionLista cl ON c.id = cl.cancion_id
+            WHERE cl.lista_id = :lista_id ";
+        $stmt2 = $db->prepare($query2);
+        $stmt2->bindParam(':lista_id', $listaId, PDO::PARAM_INT);
+        $stmt2->execute();
+        $canciones = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+        $smarty->assign("canciones", $canciones);
         $smarty->assign("lista", $lista);
         $smarty->display('listaPublica.tpl');
     } else {
@@ -177,11 +189,6 @@ if (preg_match('/^\/home\/(\d+)\/listas$/', $request, $matches)) {
     // Lógica para obtener listas de un usuario
 } 
 
-// Rutas o lógica genérica
-else {
-    http_response_code(404);
-    echo "Página no encontrada.";
-}
 
 
 // Gestión de las rutas restantes
