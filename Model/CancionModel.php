@@ -13,44 +13,47 @@
         $this->db = $db;
     }
 
-    // Crear una nueva cancion
-public function crearCanciones() {
-    $query = "INSERT INTO " . $this->table . " (nombre, artista, genero) 
-              VALUES (:nombre, :artista, :genero)";
-
-    try {
-        $stmt = $this->db->prepare($query);
-
-        // Limpiar los datos
-        $this->nombre = htmlspecialchars(strip_tags($this->nombre));
-        $this->artista = htmlspecialchars(strip_tags($this->artista));
-        $this->genero = htmlspecialchars(strip_tags($this->genero));
-        
-        // Enlazar los parámetros con especificación de tipo
-        $stmt->bindParam(':nombre', $this->nombre, PDO::PARAM_STR);
-        $stmt->bindParam(':artista', $this->artista, PDO::PARAM_STR);
-        $stmt->bindParam(':genero', $this->genero, PDO::PARAM_STR);
-
-        // Ejecutar la consulta
-        if ($stmt->execute()) {
-            $lastInsertId = $this->db->lastInsertId();
-            
-            // Verificar si se generó un ID válido
-            if (!empty($lastInsertId)) {
-                return $lastInsertId;
-            }
+    public function agregarCancion($nombre, $artista, $genero, $lista_id) {
+        // Verificar si la canción ya existe en la base de datos
+        $sql = "SELECT id FROM canciones WHERE nombre = ? AND artista = ? AND genero = ?";
+        $query = $this->db->prepare($sql);
+        $query->execute([$nombre, $artista, $genero]);
+        $cancion = $query->fetch();
+    
+        if ($cancion) {
+            $cancion_id = $cancion['id']; // Usar el ID de la canción ya existente
+        } else {
+            // Insertar nueva canción
+            $sql = "INSERT INTO canciones (nombre, artista, genero) VALUES (?, ?, ?)";
+            $query = $this->db->prepare($sql);
+            $query->execute([$nombre, $artista, $genero]);
+            $cancion_id = $this->db->lastInsertId();
         }
-        
-        return null; // Retorna null si no se insertó correctamente
-        
-    } catch (PDOException $e) {
-        // Mostrar error detallado (solo para desarrollo, quítalo en producción)
-        echo "Error al crear canción: " . $e->getMessage();
-        return null;
+    
+        // Verificar si la canción ya está en la misma lista
+        $sql = "SELECT * FROM cancionlista WHERE lista_id = ? AND cancion_id = ?";
+        $query = $this->db->prepare($sql);
+        $query->execute([$lista_id, $cancion_id]);
+        $cancion_en_lista = $query->fetch();
+    
+        if ($cancion_en_lista) {
+            return ["error" => "La canción ya está en la lista."];
+        }
+    
+        // Insertar la canción en la lista
+        $sql = "INSERT INTO cancionlista (lista_id, cancion_id) VALUES (?, ?)";
+        $query = $this->db->prepare($sql);
+        $success = $query->execute([$lista_id, $cancion_id]);
+    
+        // Verificar si la inserción fue exitosa
+        if (!$success) {
+            return ["error" => "Error al agregar la canción a la lista."];
+        }
+    
+        return ["success" => "Canción agregada exitosamente."];
     }
-}
-
-
+    
+    
     // Obtener todos las canciones
     public function obtenerCanciones() {
         $query = "SELECT * FROM " . $this->table;

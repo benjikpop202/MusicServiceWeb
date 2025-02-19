@@ -149,13 +149,22 @@ async function agregarCancion(event) {
     formData.append("lista_id", listaId);
 
     try {
-        const response = await fetch("http://localhost:8000/index.php?action=crearCancion", {
+        const response = await fetch("http://localhost:8000/index.php?action=agregarCancion", {
             method: "POST",
             body: formData
         });
 
-        const data = await response.text();
-        console.log(data);
+        const textData = await response.text(); // Primero obtenemos la respuesta como texto
+        console.log("Respuesta del servidor:", textData);
+
+        let data;
+        try {
+            data = JSON.parse(textData); // Intentamos convertirla a JSON
+        } catch (error) {
+            console.error("Error al parsear JSON:", error);
+            alert("Error inesperado en la respuesta del servidor.");
+            return;
+        }
 
         if (data.error) {
             alert(data.error);
@@ -176,4 +185,3 @@ async function agregarCancion(event) {
         alert("Hubo un error al agregar la canción.");
     }
 }
-
