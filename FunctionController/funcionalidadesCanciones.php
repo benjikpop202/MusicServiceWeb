@@ -19,8 +19,8 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 if (isset($_GET['action'])) {
     switch ($action) {
         // Obtener una canción por ID
-        case 'crearCancion':
-            $cancionController->crearCancion();
+        case 'agregarCancion':
+            $cancionController->agregarCancion();
             exit();
         case 'obtenerCancionPorId':
             $id = isset($_GET['id']) ? $_GET['id'] : die("Falta el ID de la canción");
