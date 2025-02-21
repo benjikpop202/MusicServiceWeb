@@ -138,7 +138,19 @@ if (preg_match('/^\/plataforma\/(\d+)$/', $request, $matches)) {
     $stmt->bindParam(':listaId', $listaId);
     $stmt->execute();
     $lista = $stmt->fetch(PDO::FETCH_ASSOC);
+    
     if ($lista) {
+
+        $query2 = "SELECT c.id, c.nombre, c.artista, c.genero 
+            FROM Canciones c
+            JOIN CancionLista cl ON c.id = cl.cancion_id
+            WHERE cl.lista_id = :lista_id ";
+        $stmt2 = $db->prepare($query2);
+        $stmt2->bindParam(':lista_id', $listaId, PDO::PARAM_INT);
+        $stmt2->execute();
+        $canciones = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+        $smarty->assign("canciones", $canciones);
         $smarty->assign("lista", $lista);
         $smarty->display('listaPublica.tpl');
     } else {
