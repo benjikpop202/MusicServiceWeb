@@ -15,19 +15,19 @@ class CancionesController {
 
 
 
-    public function agregarCancion() {
+    public function crearCancion() {
         header('Content-Type: application/json');
     
         // Verificar el método de solicitud
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Obtener datos del formulario
             $lista_id = isset($_POST['lista_id']) ? $_POST['lista_id'] : '';
-            $nombre = isset($_POST['nombre']) ? trim($_POST['nombre']) : '';
-            $artista = isset($_POST['artista']) ? trim($_POST['artista']) : '';
-            $genero = isset($_POST['genero']) ? trim($_POST['genero']) : '';
+            $this->cancion->nombre = isset($_POST['nombre']) ? trim($_POST['nombre']) : '';
+            $this->cancion->artista = isset($_POST['artista']) ? trim($_POST['artista']) : '';
+            $this->cancion->genero = isset($_POST['genero']) ? trim($_POST['genero']) : '';
     
             // Validar que todos los campos estén presentes
-            if (empty($nombre) || empty($artista) || empty($genero)) {
+            if (empty($this->cancion->nombre) || empty($this->cancion->artista) || empty($this->cancion->genero)) {
                 echo json_encode(["error" => "Todos los campos son obligatorios."]);
                 return;
             }
@@ -38,22 +38,26 @@ class CancionesController {
                 return;
             }
     
-            // Intentar agregar la canción
-            $response = $this->cancion->agregarCancion($nombre, $artista, $genero, $lista_id);
+            // Crear la canción
+            $newCancion = $this->cancion->crearCanciones();
+            if ($newCancion === false) {
+                echo json_encode(["error" => "Error al crear la canción en la base de datos."]);
+                return;
+            }
     
-            // Verificar si hubo un error en el modelo
-            if (isset($response['error'])) {
-                echo json_encode(["error" => $response['error']]);
+            // Agregar la canción a la lista
+            $agregada = $this->cancionLista->agregarCancionALista($newCancion, $lista_id);
+            if (!$agregada) {
+                echo json_encode(["error" => "Error al agregar la canción a la lista."]);
                 return;
             }
     
             // Respuesta exitosa
-            echo json_encode(["success" => $response['mensaje']]);
+            echo json_encode(["success" => "Canción creada y agregada a la lista con éxito."]);
         } else {
             echo json_encode(["error" => "Método no permitido."]);
         }
     }
-    
     
 
     // Método para obtener todas las canciones
